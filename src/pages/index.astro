@@ -1,29 +1,28 @@
 ---
 import Naglowek from '../components/Naglowek.astro';
+import Hero from '../components/Hero.astro';
+import ProblemRozwiazanie from '../components/ProblemRozwiazanie.astro';
+import KluczoweProdukty from '../components/KluczoweProdukty.astro';
+import Opinie from '../components/Opinie.astro';
+import CTA from '../components/CTA.astro';
 import Stopka from '../components/Stopka.astro';
 ---
+
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Projekt Quantum Leap</title>
+    <title>Galeria Ubezpieczeniowa - Nowa Strona Główna</title>
   </head>
   <body>
     <Naglowek />
     <main>
-      <h2>To jest główna treść strony</h2>
-      <p>Ten fragment znajduje się w pliku index.astro, ale Nagłówek i Stopka są importowane z oddzielnych plików, dzięki czemu możemy ich używać na wielu podstronach!</p>
+      <Hero />
+      <ProblemRozwiazanie />
+      <KluczoweProdukty />
+      <Opinie />
+      <CTA />
     </main>
     <Stopka />
   </body>
 </html>
-<style is:global>
-  body {
-    font-family: system-ui, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-  }
-  main {
-    padding: 2rem;
-  }
-</style>
