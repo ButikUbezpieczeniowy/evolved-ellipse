@@ -1,24 +1,71 @@
+---
+// Komponent sekcji z kluczowymi produktami
+---
 <section class="products">
-  <h2>[Nasze specjalizacje]</h2>
-  <div class="product-grid">
-    <div class="product-card">
-      <h3>[Produkt 1, np. Ubezpieczenia na Życie]</h3>
-      <p>[Krótki opis produktu 1]</p>
-      <a href="/produkty/zycie">[Dowiedz się więcej]</a>
+  <h2>Ubezpieczenia na każdą potrzebę</h2>
+  <div class="product-categories">
+    
+    <div class="category">
+      <h3>Dla Ciebie i Rodziny</h3>
+      <ul>
+        <li>
+          <strong>Życie i Zdrowie:</strong> Ochrona na wypadek nieprzewidzianych zdarzeń, prywatna opieka medyczna i zabezpieczenie przyszłości najbliższych.
+        </li>
+        <li>
+          <strong>Samochód i Inne Pojazdy:</strong> Kompleksowe ubezpieczenia OC, AC, NNW i Assistance dla Twojego auta, motocykla czy łodzi.
+        </li>
+        <li>
+          <strong>Dom i Mieszkanie:</strong> Ochrona Twojej nieruchomości, jej wyposażenia oraz OC w życiu prywatnym.
+        </li>
+        <li>
+          <strong>Podróże:</strong> Bezpieczny wyjazd na wakacje lub w podróż służbową, obejmujący koszty leczenia i ochronę bagażu.
+        </li>
+        <li>
+          <strong>Inwestycje i Emerytura:</strong> Produkty, które pomogą Ci budować kapitał na przyszłość i zapewnić sobie godną emeryturę.
+        </li>
+      </ul>
     </div>
-    <div class="product-card">
-      <h3>[Produkt 2, np. Ubezpieczenia Komunikacyjne]</h3>
-      <p>[Krótki opis produktu 2]</p>
-      <a href="/produkty/komunikacyjne">[Dowiedz się więcej]</a>
+
+    <div class="category">
+      <h3>Dla Twojej Firmy</h3>
+      <ul>
+        <li>
+          <strong>Majątek Firmy:</strong> Ubezpieczenie biura, magazynu, sprzętu i towarów od zdarzeń losowych i kradzieży.
+        </li>
+        <li>
+          <strong>Flota Pojazdowa:</strong> Atrakcyjne pakiety ubezpieczeń dla wszystkich pojazdów w Twojej firmie.
+        </li>
+        <li>
+          <strong>OC Działalności:</strong> Ochrona przed roszczeniami finansowymi ze strony klientów i kontrahentów.
+        </li>
+        <li>
+          <strong>Ubezpieczenia Grupowe:</strong> Pakiety na życie i zdrowie dla Twoich pracowników, budujące ich lojalność i bezpieczeństwo.
+        </li>
+        <li>
+          <strong>Gwarancje Ubezpieczeniowe:</strong> Niezbędne w wielu branżach, m.in. budowlanej, do zabezpieczenia kontraktów.
+        </li>
+      </ul>
     </div>
-    <div class="product-card">
-      <h3>[Produkt 3, np. Ubezpieczenia Majątkowe]</h3>
-      <p>[Krótki opis produktu 3]</p>
-      <a href="/produkty/majatkowe">[Dowiedz się więcej]</a>
-    </div>
+
   </div>
 </section>
 
 <style>
-  /* Style dla sekcji Produktów */
-</style>
+  .products {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: #f9f9f9; /* Jasne tło dla wyróżnienia sekcji */
+  }
+
+  .product-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    text-align: left;
+  }
+
+  .category {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
