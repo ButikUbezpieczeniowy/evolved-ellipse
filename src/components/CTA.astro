@@ -1,28 +1,34 @@
 <section class="cta">
   <h2>Zrób pierwszy krok do lepszej ochrony. To nic nie kosztuje.</h2>
-  <form>
-    <input type="text" placeholder="Twoje Imię" />
-    <input type="tel" placeholder="Numer Telefonu" />
-    <input type="email" placeholder="Adres e-mail" />
-    <select>
-      <option disabled selected>Wybierz interesujący Cię produkt...</option>
+  
+  <form name="kontakt" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="kontakt" />
+    
+    <input type="text" name="imie" placeholder="Twoje Imię" required />
+    <input type="tel" name="telefon" placeholder="Numer Telefonu" required />
+    <input type="email" name="email" placeholder="Adres e-mail" required />
+    
+    <select name="produkt" required>
+      <option disabled selected value="">Wybierz interesujący Cię produkt...</option>
       <optgroup label="Dla Ciebie i Rodziny">
-        <option>Życie i Zdrowie</option>
-        <option>Samochód i Inne Pojazdy</option>
-        <option>Dom i Mieszkanie</option>
-        <option>Podróże</option>
-        <option>Inwestycje i Emerytura</option>
+        <option value="Zycie i Zdrowie">Życie i Zdrowie</option>
+        <option value="Samochod i Inne Pojazdy">Samochód i Inne Pojazdy</option>
+        <option value="Dom i Mieszkanie">Dom i Mieszkanie</option>
+        <option value="Podroze">Podróże</option>
+        <option value="Inwestycje i Emerytura">Inwestycje i Emerytura</option>
       </optgroup>
       <optgroup label="Dla Twojej Firmy">
-        <option>Majątek Firmy</option>
-        <option>Flota Pojazdowa</option>
-        <option>OC Działalności</option>
-        <option>Ubezpieczenia Grupowe</option>
-        <option>Gwarancje Ubezpieczeniowe</option>
+        <option value="Majatek Firmy">Majątek Firmy</option>
+        <option value="Flota Pojazdowa">Flota Pojazdowa</option>
+        <option value="OC Dzialalnosci">OC Działalności</option>
+        <option value="Ubezpieczenia Grupowe">Ubezpieczenia Grupowe</option>
+        <option value="Gwarancje Ubezpieczeniowe">Gwarancje Ubezpieczeniowe</option>
       </optgroup>
     </select>
+    
     <button type="submit">Chcę bezpłatną konsultację</button>
   </form>
+  
   <p class="rodo"><small>Wyrażam zgodę na kontakt w celu przedstawienia oferty.</small></p>
 </section>
 
