@@ -6,6 +6,7 @@ import KluczoweProdukty from '../components/KluczoweProdukty.astro';
 import Opinie from '../components/Opinie.astro';
 import CTA from '../components/CTA.astro';
 import Stopka from '../components/Stopka.astro';
+import Analytics from '../components/Analytics.astro';
 ---
 
 <html lang="pl">
@@ -13,8 +14,11 @@ import Stopka from '../components/Stopka.astro';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Galeria Ubezpieczeniowa - Nowa Strona Główna</title>
+    <Analytics />
   </head>
   <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T958KD9G"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <Naglowek />
     <main>
       <Hero />
