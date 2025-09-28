@@ -1,15 +1,15 @@
 # netlify.toml
 
-# Sekcja konfiguracji kompilacji dla Astro
+# Sekcja konfiguracji kompilacji (Build configuration)
 [build]
-  # Komenda budowania projektu Astro
+  # Komenda budowania projektu Astro (standardowo jest to 'npm run build')
   command = "npm run build"
-  # Katalog wynikowy po kompilacji
+  # Katalog wynikowy po kompilacji (gdzie Astro umieszcza statyczne pliki)
   publish = "dist" 
 
 # Sekcja konfiguracji dla Netlify Functions
 [functions]
-  # Katalog, w którym Netlify szuka Serverless Functions (nasza funkcja Gemini)
+  # Katalog, w którym Netlify szuka naszych Serverless Functions (dla Gemini API)
   directory = "netlify/functions"
-  # Wymuśmy użycie Node.js w wersji 20 (wymagane przez Gemini API)
+  # Wymuśmy użycie Node.js w wersji 20 (wymagane przez @google/genai)
   node_version = "20"
