@@ -19,8 +19,15 @@ let error: string | null = null;
 try {
   // Ścieżka do naszej Netlify Function (została zdefiniowana w folderze netlify/functions)
   // Używamy Astro.site (lub w przypadku środowiska lokalnego Astro.url.origin) do zbudowania poprawnego URL.
-  const siteUrl = Astro.site?.href || Astro.url.origin;
-  const apiEndpoint = `${siteUrl}.netlify/functions/generate-seo-faq?topic=${encodeURIComponent(topic)}`;
+  // Zapewniamy, że używamy prawidłowego URL Serverless Function.
+// W trakcie kompilacji Netlify Functions są dostępne przez ścieżkę /function-name.
+// Właściwy URL jest dostępny wewnątrz Build Hooka.
+const apiEndpoint = `/.netlify/functions/generate-seo-faq?topic=${encodeURIComponent(topic)}`;
+
+// Poniższa instrukcja musi być użyta TYLKO wewnątrz środowiska Astro.fetch
+// Jeśli kompilacja Astro się odbywa, to Netlify automatycznie ustawia dostępny URL
+const response = await fetch(apiEndpoint); 
+// ... reszta kodu jest OK
   
   console.log(`[Gemini AI] Wywoływanie funkcji dla tematu: ${topic}`);
 
