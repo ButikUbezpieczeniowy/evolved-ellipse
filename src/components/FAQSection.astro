@@ -1,0 +1,104 @@
+---
+// src/components/FAQSection.astro
+// OSTATECZNA WERSJA POPRAWIONA - Usuwa błędy typowania i zasięgu.
+
+export interface FAQItem {
+  pytanie: string;
+  odpowiedz: string;
+}
+
+export interface Props {
+  topic: string; // Temat do przekazania do Gemini API (np. "Ubezpieczenie OC i AC")
+}
+
+const { topic } = Astro.props;
+let faqItems: FAQItem[] = [] as FAQItem[]; // Inicjalizacja z poprawnym typem
+let error: string | null = null;
+let response; 
+
+// WAŻNE: Funkcja asynchroniczna jest wykonywana JEDNOKROTNIE w czasie KOMPILACJI (Build Time)
+try {
+  // Używamy encodeURIComponent, które jest globalnie dostępne w Node.js i jest bezpieczne.
+  const encodedTopic = encodeURIComponent(topic);
+  const apiEndpoint = `/.netlify/functions/generate-seo-faq?topic=${encodedTopic}`;
+  
+  console.log(`[Gemini AI] Wywoływanie funkcji dla tematu: ${topic}`);
+
+  // Wywołanie Serverless Function
+  response = await fetch(apiEndpoint); 
+  
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Błąd API: ${response.status} ${response.statusText} - ${errorBody.substring(0, 50)}...`); 
+  }
+  
+  // Odbieramy ustrukturyzowaną odpowiedź JSON od Gemini
+  const data = await response.json();
+  
+  // Weryfikujemy i rzutujemy typ dla całkowitej poprawności (usuwa błąd 'Property map does not exist on type any')
+  if (Array.isArray(data)) {
+      faqItems = data as FAQItem[];
+  } else {
+      throw new Error('Otrzymany format danych z API nie jest tablicą (JSON-array).');
+  }
+
+} catch (e) {
+  const errorMessage = e instanceof Error ? e.message : 'Nieznany błąd.';
+  error = `Błąd AI podczas generowania FAQ: ${errorMessage}. Sprawdź GEMINI_API_KEY i plik generate-seo-faq.js.`;
+  console.error(error);
+}
+---
+<section id="faq" class="py-12 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">
+            Najczęściej Zadawane Pytania (FAQ)
+        </h2>
+        
+        {/* WARUNKOWE WYŚWIETLANIE TREŚCI / BŁĘDU */}
+        {error ? (
+            // WYŚWIETLAMY BŁĄD, JEŚLI ZOSTAŁ ZŁAPANY
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Błąd Kompilacji AI:</strong>
+                <span class="block sm:inline ml-2">{error}</span>
+            </div>
+        ) : faqItems.length === 0 ? (
+            // WYŚWIETLAMY KOMUNIKAT, JEŚLI DANYCH BRAK, ALE BŁĘDU NIE BYŁO (np. po prostu nie wygenerowano lub dane były puste)
+            <p class="text-center text-gray-500">
+                ✅ Kompilacja udana, ale sekcja FAQ jest pusta. Spróbuj ponownie lub dostosuj temat.
+            </p>
+        ) : (
+            // RENDERUJEMY LISTĘ FAQ
+            <div class="space-y-4">
+                {faqItems.map((item) => (
+                    <details class="bg-white shadow rounded-lg overflow-hidden border border-gray-200">
+                        <summary class="flex justify-between items-center p-5 cursor-pointer list-none font-semibold text-lg text-blue-600">
+                            {item.pytanie}
+                            <span class="ml-2 transform transition-transform duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="p-5 pt-0 text-gray-700 border-t border-gray-200">
+                            <p>{item.odpowiedz}</p>
+                        </div>
+                    </details>
+                ))}
+            </div>
+        )}
+    </div>
+</section>
+
+{/* Wstrzyknięcie JSON-LD dla SEO po udanym pobraniu danych */}
+{faqItems.length > 0 && (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqItems.map(item => ({
+            "@type": "Question",
+            "name": item.pytanie,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.odpowiedz
+            }
+        }))
+    })} />
+)}
