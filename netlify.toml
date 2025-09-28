@@ -1,0 +1,12 @@
+# netlify.toml
+
+# Wymuszenie wersji Node.js dla środowiska kompilacji
+# Jest to kluczowe, ponieważ @google/genai wymaga Node.js >=20
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  # Upewniamy się, że funkcje również używają Node.js 20
+  directory = "netlify/functions"
+  node_version = "20"
