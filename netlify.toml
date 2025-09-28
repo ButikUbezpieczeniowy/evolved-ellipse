@@ -1,12 +1,15 @@
 # netlify.toml
 
-# Wymuszenie wersji Node.js dla środowiska kompilacji
-# Jest to kluczowe, ponieważ @google/genai wymaga Node.js >=20
+# Sekcja konfiguracji kompilacji dla Astro
 [build]
+  # Komenda budowania projektu Astro
   command = "npm run build"
-  publish = "dist"
+  # Katalog wynikowy po kompilacji
+  publish = "dist" 
 
+# Sekcja konfiguracji dla Netlify Functions
 [functions]
-  # Upewniamy się, że funkcje również używają Node.js 20
+  # Katalog, w którym Netlify szuka Serverless Functions (nasza funkcja Gemini)
   directory = "netlify/functions"
+  # Wymuśmy użycie Node.js w wersji 20 (wymagane przez Gemini API)
   node_version = "20"
