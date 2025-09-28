@@ -1,0 +1,84 @@
+---
+import Naglowek from '../components/Naglowek.astro';
+import Stopka from '../components/Stopka.astro';
+import GTMNoScript from '../components/GTMNoScript.astro';
+import FAQSection from '../components/FAQSection.astro'; 
+// Importujemy komponenty dla sekcji
+import HeroForm from '../components/turystyka/HeroForm.astro';
+import CoreBenefits from '../components/turystyka/CoreBenefits.astro';
+
+// ----------------------------------------------
+// METADATA (Dla Ciebie: Wypełnij unikalnym tekstem!)
+// ----------------------------------------------
+const pageTitle = "Ubezpieczenie Turystyczne w Polsce - Porównaj i Kup Polisę w 90 Sekund!";
+const pageDescription = "Najlepsze ubezpieczenie na podróż po Polsce od kosztów rezygnacji, leczenia i ratownictwa. Szybka kalkulacja online.";
+const pageUrl = "https://galeriaubezpieczeniowa.pl/ubezpieczenie-turystyczne-polska"; // Kanoniczny URL
+
+// ----------------------------------------------
+// DANE DLA GENERATORA AI (Temat dla Gemini Function)
+// ----------------------------------------------
+const faqTopic = "Ubezpieczenie turystyczne na podróże po terytorium Polski";
+---
+
+<!doctype html>
+<html lang="pl">
+<Naglowek title={pageTitle} description={pageDescription} url={pageUrl} />
+<body class="bg-white text-gray-900 min-h-screen flex flex-col">
+    <GTMNoScript />
+
+    <header class="bg-blue-600 text-white py-4 shadow-lg sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <a href="/" class="text-xl font-bold tracking-tight">
+                Galeria Ubezpieczeniowa
+            </a>
+            <div class="hidden sm:block text-sm font-semibold">
+                Zadzwoń: +48 XXX XXX XXX
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <HeroForm 
+            headline="Ubezpieczenie Turystyczne w Polsce – Spokój na Twoim urlopie"
+            subHeadline="Ochrona przed rezygnacją, ratownictwem i nagłymi wypadkami. Skalkuluj cenę w 90 sekund."
+            imagePath="/images/turystyka/rodzina-w-gorach.webp"
+        />
+
+        <CoreBenefits />
+
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-extrabold text-blue-700 mb-8">
+                    Dlaczego warto ubezpieczyć urlop krajowy?
+                </h2>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <article class="p-6 border rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                            <span class="text-yellow-500 mr-3 text-2xl">🚨</span> Koszty Ratownictwa Górskiego i Morskiego
+                        </h3>
+                        <p class="text-gray-700">W Polsce akcje ratownicze GOPR/WOPR są często bezpłatne, ale transport medyczny i helikopter już nie. Polisa pokrywa te koszty, chroniąc Twój portfel.</p>
+                    </article>
+                    <article class="p-6 border rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                            <span class="text-yellow-500 mr-3 text-2xl">キャンセル</span> Rezygnacja z Podróży
+                        </h3>
+                        <p class="text-gray-700">Jeśli musisz odwołać wyjazd z powodu choroby, wypadku lub innej nagłej przyczyny, ubezpieczenie zwraca koszty zarezerwowanego noclegu czy biletów.</p>
+                    </article>
+                    <article class="p-6 border rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                            <span class="text-yellow-500 mr-3 text-2xl">💰</span> Assistance i NNW
+                        </h3>
+                        <p class="text-gray-700">Zapewnia pomoc prawną, szybką pomoc w razie wypadku (NNW) oraz pomoc techniczną, gdy Twój samochód odmówi posłuszeństwa w drodze na urlop.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <FAQSection topic={faqTopic} />
+        
+    </main>
+
+    <Stopka />
+</body>
+</html>
