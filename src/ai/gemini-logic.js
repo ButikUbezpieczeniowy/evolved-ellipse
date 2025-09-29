@@ -1,11 +1,14 @@
 // src/ai/gemini-logic.js
+// FINALNA WERSJA - Składnia ES Module (import/export)
 
-const { GoogleGenAI } = require('@google/genai');
+// 💡 Zmiana: Używamy import zamiast require
+import { GoogleGenAI } from '@google/genai';
 
 // Inicjalizacja klienta Gemini
+// Klucz API jest nadal pobierany z ENV
 const ai = new GoogleGenAI({});
 
-// 💡 Definicja Schematu JSON 
+// Definicja Schematu JSON 
 const FAQ_SCHEMA = {
   type: 'array',
   description: 'Lista 5 pytań i odpowiedzi na temat ubezpieczenia.',
@@ -27,7 +30,7 @@ const FAQ_SCHEMA = {
 
 // 💡 CZYSTA FUNKCJA LOGIKI AI - eksportowana do użycia w Astro
 export async function generateFAQContent(topic) {
-  const prompt = `Jesteś ekspertem SEO i specjalistą w dziedzinie ubezpieczeń. Wygeneruj 5 Często Zadawanych Pytań (FAQ) i odpowiedzi na temat: "${topic}". Użyj formatu JSON zgodnie z dostarczonym schematem.`;
+  const prompt = `Jesteś ekspertem SEO i specjalistą w dziedzinie ubezpieczeń. Wygeneruj 5 Często Zadawanych Pytań (FAQ) i odpowiedzi na temat: "${topic}". Treść musi być unikalna i merytoryczna. Użyj formatu JSON zgodnie z dostarczonym schematem.`;
 
   try {
     const response = await ai.models.generateContent({
@@ -41,8 +44,7 @@ export async function generateFAQContent(topic) {
 
     return JSON.parse(response.text.trim());
   } catch (error) {
-    // Rzucamy błąd, aby Astro go złapał i wyświetlił w FAQSection
     const errorMessage = error instanceof Error ? error.message : String(error);
-    throw new Error(`Krytyczny błąd API Gemini: ${errorMessage}. Upewnij się, że GEMINI_API_KEY w Netlify działa i jest ważny.`);
+    throw new Error(`Błąd API Gemini: ${errorMessage}. Sprawdź, czy GEMINI_API_KEY w Netlify działa i jest ważny.`);
   }
 }
