@@ -1,6 +1,8 @@
 ---
 // src/components/FAQSection.astro
-// OSTATECZNA WERSJA POPRAWIONA - Usuwa błędy typowania i zasięgu.
+// Rozwiązanie Finalne: Bezpośredni Import Logiki AI z katalogu src/ai/
+
+import { generateFAQContent } from '../ai/gemini-logic.js'; 
 
 export interface FAQItem {
   pytanie: string;
@@ -8,70 +10,50 @@ export interface FAQItem {
 }
 
 export interface Props {
-  topic: string; // Temat do przekazania do Gemini API (np. "Ubezpieczenie OC i AC")
+  topic: string; 
 }
 
 const { topic } = Astro.props;
-let faqItems: FAQItem[] = [] as FAQItem[]; // Inicjalizacja z poprawnym typem
-let error: string | null = null;
-let response; 
+let faqItems: FAQItem[] = [] as FAQItem[];
+let error: string | null = null; 
 
-// WAŻNE: Funkcja asynchroniczna jest wykonywana JEDNOKROTNIE w czasie KOMPILACJI (Build Time)
+// KLUCZOWE: Wywołanie funkcji bezpośrednio w Node.js Netlify (Build Time)
 try {
-  // 💡 OSTATECZNA POPRAWKA: Wymuszamy użycie nowej zmiennej środowiskowej
-  // która jest ustawiona bezpośrednio w panelu Netlify, aby uniknąć localhost:4321
-  const baseUrl = import.meta.env.PUBLIC_BASE_URL || Astro.url.origin;
-  const encodedTopic = encodeURIComponent(topic);
-  
-  // Konstruujemy pełny, absolutny URL do Serverless Function
-  const apiEndpoint = `${baseUrl}/.netlify/functions/generate-seo-faq?topic=${encodedTopic}`;
-  
-  console.log(`[Gemini AI] Wywoływanie funkcji dla tematu: ${topic}. Używany URL: ${apiEndpoint}`);
+  console.log(`[Gemini AI] BEZPOŚREDNIE Wywoływanie logiki dla tematu: ${topic}`);
 
-// Wywołanie Serverless Function
-response = await fetch(apiEndpoint); 
-// ...  
-  if (!response.ok) {
-    const errorBody = await response.text();
-    throw new Error(`Błąd API: ${response.status} ${response.statusText} - ${errorBody.substring(0, 50)}...`); 
-  }
+  const data = await generateFAQContent(topic);
   
-  // Odbieramy ustrukturyzowaną odpowiedź JSON od Gemini
-  const data = await response.json();
-  
-  // Weryfikujemy i rzutujemy typ dla całkowitej poprawności (usuwa błąd 'Property map does not exist on type any')
+  // Walidacja i rzutowanie typu (usuwa błędy map/length)
   if (Array.isArray(data)) {
       faqItems = data as FAQItem[];
   } else {
-      throw new Error('Otrzymany format danych z API nie jest tablicą (JSON-array).');
+      throw new Error('Otrzymany format danych z AI nie jest poprawną tablicą JSON.');
   }
 
 } catch (e) {
   const errorMessage = e instanceof Error ? e.message : 'Nieznany błąd.';
-  error = `Błąd AI podczas generowania FAQ: ${errorMessage}. Sprawdź GEMINI_API_KEY i plik generate-seo-faq.js.`;
+  error = `Błąd AI: ${errorMessage}. Sprawdź logi kompilacji (Build log) Netlify, sekcja 'API Gemini'`;
   console.error(error);
 }
 ---
+
 <section id="faq" class="py-12 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4">
         <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">
             Najczęściej Zadawane Pytania (FAQ)
         </h2>
         
-        {/* WARUNKOWE WYŚWIETLANIE TREŚCI / BŁĘDU */}
+        {/* Renderowanie jest teraz odporne na błędy i poprawnie wyświetli błąd, jeśli wystąpi */}
         {error ? (
-            // WYŚWIETLAMY BŁĄD, JEŚLI ZOSTAŁ ZŁAPANY
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Błąd Kompilacji AI:</strong>
+                <strong class="font-bold">Błąd Generowania AI:</strong>
                 <span class="block sm:inline ml-2">{error}</span>
             </div>
         ) : faqItems.length === 0 ? (
-            // WYŚWIETLAMY KOMUNIKAT, JEŚLI DANYCH BRAK, ALE BŁĘDU NIE BYŁO (np. po prostu nie wygenerowano lub dane były puste)
             <p class="text-center text-gray-500">
-                ✅ Kompilacja udana, ale sekcja FAQ jest pusta. Spróbuj ponownie lub dostosuj temat.
+                ✅ Kompilacja udana, ale sekcja FAQ jest pusta. Spróbuj zmienić temat.
             </p>
         ) : (
-            // RENDERUJEMY LISTĘ FAQ
             <div class="space-y-4">
                 {faqItems.map((item) => (
                     <details class="bg-white shadow rounded-lg overflow-hidden border border-gray-200">
@@ -91,7 +73,7 @@ response = await fetch(apiEndpoint);
     </div>
 </section>
 
-{/* Wstrzyknięcie JSON-LD dla SEO po udanym pobraniu danych */}
+{/* JSON-LD dla SEO */}
 {faqItems.length > 0 && (
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
         "@context": "https://schema.org",
