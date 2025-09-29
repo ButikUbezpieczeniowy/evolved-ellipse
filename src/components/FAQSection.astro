@@ -1,7 +1,7 @@
 ---
 // src/components/FAQSection.astro
-// Rozwiązanie Finalne: Bezpośredni Import Logiki AI z katalogu src/ai/
 
+// 💡 IMPORTUJEMY LOGIKĘ AI Z UPROSZCZONEJ ŚCIEŻKI
 import { generateFAQContent } from '../ai/gemini-logic.js'; 
 
 export interface FAQItem {
@@ -23,16 +23,16 @@ try {
 
   const data = await generateFAQContent(topic);
   
-  // Walidacja i rzutowanie typu (usuwa błędy map/length)
   if (Array.isArray(data)) {
       faqItems = data as FAQItem[];
   } else {
+      // Błąd walidacji, jeśli Gemini nie zwróci tablicy
       throw new Error('Otrzymany format danych z AI nie jest poprawną tablicą JSON.');
   }
 
 } catch (e) {
   const errorMessage = e instanceof Error ? e.message : 'Nieznany błąd.';
-  error = `Błąd AI: ${errorMessage}. Sprawdź logi kompilacji (Build log) Netlify, sekcja 'API Gemini'`;
+  error = `Błąd AI: ${errorMessage}. Prawdopodobna przyczyna: Niepoprawny klucz GEMINI_API_KEY w Netlify.`;
   console.error(error);
 }
 ---
@@ -51,7 +51,7 @@ try {
             </div>
         ) : faqItems.length === 0 ? (
             <p class="text-center text-gray-500">
-                ✅ Kompilacja udana, ale sekcja FAQ jest pusta. Spróbuj zmienić temat.
+                ✅ Kompilacja udana, ale sekcja FAQ jest pusta. Sprawdź logi kompilacji, czy Gemini coś zwróciło.
             </p>
         ) : (
             <div class="space-y-4">
