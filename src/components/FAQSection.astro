@@ -1,8 +1,9 @@
 ---
 // src/components/FAQSection.astro
+// Finalny komponent, odporny na błędy i gotowy do wdrożenia
 
-// 💡 IMPORTUJEMY LOGIKĘ AI Z UPROSZCZONEJ ŚCIEŻKI
-import { generateFAQContent } from '../ai/gemini-logic'; 
+// 💡 Używamy default import, który naprawiliśmy:
+import generateFAQContent from '../ai/gemini-logic.js'; 
 
 export interface FAQItem {
   pytanie: string;
@@ -17,7 +18,7 @@ const { topic } = Astro.props;
 let faqItems: FAQItem[] = [] as FAQItem[];
 let error: string | null = null; 
 
-// KLUCZOWE: Wywołanie funkcji bezpośrednio w Node.js Netlify (Build Time)
+// KLUCZOWE: Wywołanie funkcji bezpośrednio w Build Time
 try {
   console.log(`[Gemini AI] BEZPOŚREDNIE Wywoływanie logiki dla tematu: ${topic}`);
 
@@ -26,13 +27,12 @@ try {
   if (Array.isArray(data)) {
       faqItems = data as FAQItem[];
   } else {
-      // Błąd walidacji, jeśli Gemini nie zwróci tablicy
       throw new Error('Otrzymany format danych z AI nie jest poprawną tablicą JSON.');
   }
 
 } catch (e) {
   const errorMessage = e instanceof Error ? e.message : 'Nieznany błąd.';
-  error = `Błąd AI: ${errorMessage}. Prawdopodobna przyczyna: Niepoprawny klucz GEMINI_API_KEY w Netlify.`;
+  error = `Błąd AI: ${errorMessage}. Sprawdź logi kompilacji (Build log) Netlify.`;
   console.error(error);
 }
 ---
@@ -43,7 +43,6 @@ try {
             Najczęściej Zadawane Pytania (FAQ)
         </h2>
         
-        {/* Renderowanie jest teraz odporne na błędy i poprawnie wyświetli błąd, jeśli wystąpi */}
         {error ? (
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                 <strong class="font-bold">Błąd Generowania AI:</strong>
@@ -51,7 +50,7 @@ try {
             </div>
         ) : faqItems.length === 0 ? (
             <p class="text-center text-gray-500">
-                ✅ Kompilacja udana, ale sekcja FAQ jest pusta. Sprawdź logi kompilacji, czy Gemini coś zwróciło.
+                ✅ Kompilacja udana, ale sekcja FAQ jest pusta. Spróbuj zmienić temat lub wdrożyć ponownie.
             </p>
         ) : (
             <div class="space-y-4">

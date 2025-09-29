@@ -1,12 +1,12 @@
 // src/ai/gemini-logic.js
-// OSTATECZNA WERSJA POPRAWIONA - UŻYWA GOOGLE_API_KEY
+// Finalny moduł logiki AI, kompatybilny z Astro/ESM
 
 import { GoogleGenAI } from '@google/genai';
 
-// 💡 Zmiana: Inicjujemy klienta, przekazując mu zmienną środowiskową, której NAZWA jest w Netlify
-// Zamiast polegać na automagii, jawnie podajemy, jaki klucz ma użyć.
+// 💡 Klient Gemini Jawnie używa zmiennej środowiskowej GEMINI_API_KEY
+// Klucz musi być ustawiony w Netlify i być aktywny w projekcie Remik AI (GCP).
 const ai = new GoogleGenAI({
-  apiKey: process.env.GOOGLE_API_KEY, // KLUCZOWE: Używamy zmiennej, którą ustawiłeś w Netlify
+  apiKey: process.env.GEMINI_API_KEY, 
 });
 
 // Definicja Schematu JSON 
@@ -29,13 +29,14 @@ const FAQ_SCHEMA = {
   },
 };
 
-// CZYSTA FUNKCJA LOGIKI AI
-export async function generateFAQContent(topic) {
-  if (!process.env.GOOGLE_API_KEY) {
-    throw new Error("BŁĄD KRYTYCZNY: Zmienna GOOGLE_API_KEY nie została znaleziona w środowisku kompilacji.");
+// Domyślny eksport funkcji, który rozwiązał problemy z importem/eksportem
+export default async function generateFAQContent(topic) { 
+  if (!process.env.GEMINI_API_KEY) {
+    // To się nie powinno zdarzyć na Netlify, ale zabezpieczamy się
+    throw new Error("Brak klucza GEMINI_API_KEY w środowisku kompilacji.");
   }
   
-  const prompt = `Jesteś ekspertem SEO i specjalistą w dziedzinie ubezpieczeń. Wygeneruj 5 Często Zadawanych Pytań (FAQ) i odpowiedzi na temat: "${topic}". Użyj formatu JSON zgodnie z dostarczonym schematem.`;
+  const prompt = `Jesteś ekspertem SEO i specjalistą w dziedzinie ubezpieczeń. Wygeneruj 5 Często Zadawanych Pytań (FAQ) i odpowiedzi na temat: "${topic}". Treść musi być unikalna i merytoryczna. Użyj formatu JSON zgodnie z dostarczonym schematem.`;
 
   try {
     const response = await ai.models.generateContent({
@@ -50,7 +51,7 @@ export async function generateFAQContent(topic) {
     return JSON.parse(response.text.trim());
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
-    // Jeśli znowu 400, to problem z samym kluczem Google, nie z naszym kodem.
-    throw new Error(`Błąd API Gemini: ${errorMessage}. Prawdopodobnie niepoprawny klucz w Netlify.`);
+    // Wyświetlamy błąd dla celów diagnostycznych na stronie
+    throw new Error(`Błąd API Gemini: ${errorMessage}. Prawdopodobnie niepoprawny klucz w Netlify (400 INVALID_ARGUMENT).`);
   }
 }
