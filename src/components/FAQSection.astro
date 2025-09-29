@@ -19,14 +19,19 @@ let response;
 // WAŻNE: Funkcja asynchroniczna jest wykonywana JEDNOKROTNIE w czasie KOMPILACJI (Build Time)
 try {
   // Używamy encodeURIComponent, które jest globalnie dostępne w Node.js i jest bezpieczne.
-  const encodedTopic = encodeURIComponent(topic);
-  const apiEndpoint = `/.netlify/functions/generate-seo-faq?topic=${encodedTopic}`;
-  
-  console.log(`[Gemini AI] Wywoływanie funkcji dla tematu: ${topic}`);
+// ...
+const encodedTopic = encodeURIComponent(topic);
 
-  // Wywołanie Serverless Function
-  response = await fetch(apiEndpoint); 
-  
+// 💡 Poprawka: Używamy zmiennej środowiskowej Netlify, aby zbudować PEŁNY, POPRAWNY URL.
+// W środowisku kompilacji, zmienna URL jest adresem podglądu (preview)
+const baseUrl = process.env.URL || 'https://fallback-url.com'; // Fallback na wypadek braku zmiennej
+const apiEndpoint = `${baseUrl}/.netlify/functions/generate-seo-faq?topic=${encodedTopic}`;
+
+console.log(`[Gemini AI] Wywoływanie funkcji dla tematu: ${topic}`);
+
+// Wywołanie Serverless Function
+response = await fetch(apiEndpoint); 
+// ...  
   if (!response.ok) {
     const errorBody = await response.text();
     throw new Error(`Błąd API: ${response.status} ${response.statusText} - ${errorBody.substring(0, 50)}...`); 
