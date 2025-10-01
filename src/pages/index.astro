@@ -31,7 +31,13 @@ const faqData = await generateFAQContent(topic);
     <meta property="og:description" content="[TUTAJ WPISZ UNIKALNY OPIS META DLA SOCIAL MEDIA]" />
     <meta property="og:type" content="website" />
     <Analytics />
+// Używamy obiektu Astro, aby pobrać pełny adres URL
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+---
 
+<html lang="pl">
+  <head>
+    <link rel="canonical" href={canonicalURL} />
   </head>
   <body></body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T958KD9G"
