@@ -7,17 +7,24 @@ const { data } = Astro.props;
 <section class="faq-section">
     <h2>Najczęściej Zadawane Pytania (FAQ)</h2>
     
-    <div class="faq-container">
-        {data.map((item, index) => (
-            <details class="faq-item">
-                <summary class="faq-question">
-                    {item.pytanie}
-                </summary>
-                <p class="faq-answer">
-    {item.odpowiedz || item.odpowiedź || 'Treść odpowiedzi jest obecnie niedostępna.'} 
-</p>
-            </details>
-        ))}
+   <div class="faq-container">
+        {data && data.length > 0 ? ( // SPRAWDZAMY CZY DANE ISTNIEJĄ
+            data.map((item, index) => (
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        {item.pytanie}
+                    </summary>
+                    <p class="faq-answer">
+                         {/* Zabezpieczenie przed literówkami w polach 'odpowiedz'/'odpowiedź' */}
+                         {item.odpowiedz || item.odpowiedź || 'Treść odpowiedzi jest obecnie niedostępna.'}
+                    </p>
+                </details>
+            ))
+        ) : (
+            <p class="error-message">
+                 Sekcja FAQ jest chwilowo niedostępna. Prosimy spróbować później.
+            </p>
+        )}
     </div>
 </section>
 
