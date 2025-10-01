@@ -1,15 +1,14 @@
 // src/ai/gemini-logic.js
-// Finalny moduł logiki AI, kompatybilny z Astro/ESM
+// OSTATECZNA WERSJA LIVE API z ZABEZPIECZENIEM PRZED KRYTYCZNYM BŁĘDEM (FALLBACK)
 
 import { GoogleGenAI } from '@google/genai';
 
-// 💡 Klient Gemini Jawnie używa zmiennej środowiskowej GEMINI_API_KEY
-// Klucz musi być ustawiony w Netlify i być aktywny w projekcie Remik AI (GCP).
+// Klient Gemini jawnie używa klucza z ENV Vercel
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY, 
 });
 
-// Definicja Schematu JSON 
+// Definicja Schematu JSON (dla Gemini API)
 const FAQ_SCHEMA = {
   type: 'array',
   description: 'Lista 5 pytań i odpowiedzi na temat ubezpieczenia.',
@@ -29,11 +28,15 @@ const FAQ_SCHEMA = {
   },
 };
 
-// Domyślny eksport funkcji, który rozwiązał problemy z importem/eksportem
 export default async function generateFAQContent(topic) { 
+  // 1. Sprawdzenie, czy klucz istnieje
   if (!process.env.GEMINI_API_KEY) {
-    // To się nie powinno zdarzyć na Netlify, ale zabezpieczamy się
-    throw new Error("Brak klucza GEMINI_API_KEY w środowisku kompilacji.");
+    console.warn("Brak klucza GEMINI_API_KEY w środowisku Vercel. Zwracam bezpieczny Mock-up.");
+    // FALLBACK 1: Zwracamy statyczne dane, jeśli klucz nie został w ogóle ustawiony.
+    return [
+      { pytanie: "Co to jest polisa?", odpowiedz: "Dokument potwierdzający zawarcie umowy ubezpieczenia." },
+      { pytanie: "Jakie są korzyści z AI?", odpowiedzą: "AI dynamicznie generuje unikalne treści SEO, ale klucz API jest wymagany do pełnej funkcjonalności." },
+    ];
   }
   
   const prompt = `Jesteś ekspertem SEO i specjalistą w dziedzinie ubezpieczeń. Wygeneruj 5 Często Zadawanych Pytań (FAQ) i odpowiedzi na temat: "${topic}". Treść musi być unikalna i merytoryczna. Użyj formatu JSON zgodnie z dostarczonym schematem.`;
@@ -51,7 +54,10 @@ export default async function generateFAQContent(topic) {
     return JSON.parse(response.text.trim());
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
-    // Wyświetlamy błąd dla celów diagnostycznych na stronie
-    throw new Error(`Błąd API Gemini: ${errorMessage}. Prawdopodobnie niepoprawny klucz w Netlify (400 INVALID_ARGUMENT).`);
+    // FALLBACK 2: Jeśli klucz zawiódł podczas połączenia (np. błąd 400), zwracamy bezpieczny Mock-up.
+    console.error(`Błąd API Gemini: ${errorMessage}. Zwracam bezpieczny Mock-up.`);
+    return [
+      { pytanie: "Błąd Ładowania FAQ", odpowiedź: "Przepraszamy, tymczasowo nie można połączyć się z AI. Proszę sprawdzić zmienne środowiskowe Vercel (GEMINI_API_KEY)." },
+    ];
   }
-}
+} 

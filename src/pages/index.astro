@@ -1,4 +1,5 @@
 ---
+// Importujemy wszystkie komponenty
 import Naglowek from '../components/Naglowek.astro';
 import Hero from '../components/Hero.astro';
 import ProblemRozwiazanie from '../components/ProblemRozwiazanie.astro';
@@ -7,15 +8,22 @@ import Opinie from '../components/Opinie.astro';
 import CTA from '../components/CTA.astro';
 import Stopka from '../components/Stopka.astro';
 import Analytics from '../components/Analytics.astro';
-// DODAJEMY KLUCZOWY MODUŁ AI:
+// 1. IMPORTUJEMY KOMPONENT SEKCJI FAQ:
 import FAQSection from '../components/FAQSection.astro'; 
+
+// 2. IMPORTUJEMY FUNKCJĘ POBIERAJĄCĄ DANE Z GEMINI API:
+import generateFAQContent from '../ai/gemini-logic.js'; 
+
+// 3. DEFINIUJEMY TEMAT I POBIERAMY DANE PRZED RENDEROWANIEM (server-side rendering)
+const topic = "Ogólne ubezpieczenia dla firm i osób prywatnych - WZORZEC AKTYWNY";
+const faqData = await generateFAQContent(topic);
 ---
 
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Galeria Ubezpieczeniowa - NOWY WZORZEC STRONY - BIBLIA LANDING PAGES</title>
+    <title>Galeria Ubezpieczeniowa - BIBLIA LANDING PAGES - WZORZEC AKTYWNY</title>
     
     <Analytics />
 
@@ -30,7 +38,7 @@ import FAQSection from '../components/FAQSection.astro';
       <ProblemRozwiazanie />
       <KluczoweProdukty />
       
-      <FAQSection topic="Ogólne ubezpieczenia dla firm i osób prywatnych - Wzór" />
+      <FAQSection data={faqData} />
       
       <Opinie />
       <CTA />
