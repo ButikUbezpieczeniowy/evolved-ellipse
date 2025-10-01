@@ -1,89 +1,89 @@
 ---
-// src/components/FAQSection.astro
-// Finalny komponent, odporny na błędy i gotowy do wdrożenia
-
-// 💡 Używamy default import, który naprawiliśmy:
-import generateFAQContent from '../ai/gemini-logic.js'; 
-
-export interface FAQItem {
-  pytanie: string;
-  odpowiedz: string;
-}
-
-export interface Props {
-  topic: string; 
-}
-
-const { topic } = Astro.props;
-let faqItems: FAQItem[] = [] as FAQItem[];
-let error: string | null = null; 
-
-// KLUCZOWE: Wywołanie funkcji bezpośrednio w Build Time
-try {
-  console.log(`[Gemini AI] BEZPOŚREDNIE Wywoływanie logiki dla tematu: ${topic}`);
-
-  const data = await generateFAQContent(topic);
-  
-  if (Array.isArray(data)) {
-      faqItems = data as FAQItem[];
-  } else {
-      throw new Error('Otrzymany format danych z AI nie jest poprawną tablicą JSON.');
-  }
-
-} catch (e) {
-  const errorMessage = e instanceof Error ? e.message : 'Nieznany błąd.';
-  error = `Błąd AI: ${errorMessage}. Sprawdź logi kompilacji (Build log) Netlify.`;
-  console.error(error);
-}
+// Ten komponent powinien przyjmować tylko dane z propa.
+const { data } = Astro.props; 
+// data = [{ pytanie: "...", odpowiedz: "..." }, {...}]
 ---
 
-<section id="faq" class="py-12 bg-gray-50">
-    <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">
-            Najczęściej Zadawane Pytania (FAQ)
-        </h2>
-        
-        {error ? (
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Błąd Generowania AI:</strong>
-                <span class="block sm:inline ml-2">{error}</span>
-            </div>
-        ) : faqItems.length === 0 ? (
-            <p class="text-center text-gray-500">
-                ✅ Kompilacja udana, ale sekcja FAQ jest pusta. Spróbuj zmienić temat lub wdrożyć ponownie.
-            </p>
-        ) : (
-            <div class="space-y-4">
-                {faqItems.map((item) => (
-                    <details class="bg-white shadow rounded-lg overflow-hidden border border-gray-200">
-                        <summary class="flex justify-between items-center p-5 cursor-pointer list-none font-semibold text-lg text-blue-600">
-                            {item.pytanie}
-                            <span class="ml-2 transform transition-transform duration-300">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </span>
-                        </summary>
-                        <div class="p-5 pt-0 text-gray-700 border-t border-gray-200">
-                            <p>{item.odpowiedz}</p>
-                        </div>
-                    </details>
-                ))}
-            </div>
-        )}
+<section class="faq-section">
+    <h2>Najczęściej Zadawane Pytania (FAQ)</h2>
+    
+    <div class="faq-container">
+        {data.map((item, index) => (
+            <details class="faq-item">
+                <summary class="faq-question">
+                    {item.pytanie}
+                </summary>
+                <p class="faq-answer">
+                    {item.odpowiedz}
+                </p>
+            </details>
+        ))}
     </div>
 </section>
 
-{/* JSON-LD dla SEO */}
-{faqItems.length > 0 && (
-    <script type="application/ld+json" is:inline set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": faqItems.map(item => ({
-            "@type": "Question",
-            "name": item.pytanie,
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": item.odpowiedz
-            }
-        }))
-    })} />
-)}
+<style>
+/* PODSTAWOWA STYLIZACJA CSS DLA FAQ */
+.faq-section {
+    padding: 3rem 1rem;
+    background-color: #ffffff; /* Białe tło dla kontrastu */
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq-section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.faq-container {
+    text-align: left;
+    margin-top: 1.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0;
+    transition: background-color 0.3s;
+}
+
+.faq-item[open] {
+    background-color: #f8f8f8;
+}
+
+.faq-question {
+    font-weight: bold;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    list-style: none; /* Ukrywa domyślny trójkąt */
+    font-size: 1.1rem;
+    color: #0056b3; /* Kolor pytania */
+}
+
+/* Wymuszenie trójkąta dla otwartych detali */
+.faq-question::-webkit-details-marker,
+.faq-question::marker {
+    display: none;
+}
+
+.faq-question::before {
+    content: '+';
+    font-size: 1.2rem;
+    margin-right: 10px;
+    color: #0056b3;
+}
+
+.faq-item[open] .faq-question::before {
+    content: '-';
+    color: #d9534f;
+}
+
+.faq-answer {
+    padding: 0 1.5rem 1rem 1.5rem;
+    line-height: 1.6;
+    color: #555;
+    margin-top: 0.5rem;
+}
+</style>
