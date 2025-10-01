@@ -21,17 +21,38 @@ const topic = "Ogólne ubezpieczenia dla firm i osób prywatnych - WZORZEC AKTYW
 const faqData = await generateFAQContent(topic);
 ---
 
+---
+// Importujemy wszystkie komponenty (zostaje)
+import Naglowek from '../components/Naglowek.astro';
+// ... Hero, ProblemRozwiazanie, KluczoweProdukty, Opinie, CTA, Stopka, Analytics, FAQSection
+import FAQSection from '../components/FAQSection.astro'; 
+import generateFAQContent from '../ai/gemini-logic.js'; 
+
+const canonicalURL = Astro.url.href; // NAPRAWIONE
+const topic = "Ogólne ubezpieczenia dla firm i osób prywatnych - WZORZEC AKTYWNY";
+const faqData = await generateFAQContent(topic);
+---
+
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    
     <title>Galeria Ubezpieczeniowa - BIBLIA LANDING PAGES - WZORZEC AKTYWNY</title>
     
+    <link rel="preload" href="/fonts/nazwa-czcionki-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="mask-icon" href="/safari-pin-icon.svg" color="#0056b3">
+
     <meta name="description" content="[TUTAJ WPISZ UNIKALNY OPIS STRONY. DLA WZORCA JEST TO PUSTY TEKST.]" />
+    <link rel="canonical" href={canonicalURL} /> 
 
     <meta property="og:title" content="Galeria Ubezpieczeniowa - WZORZEC AKTYWNY" />
     <meta property="og:description" content="[TUTAJ WPISZ UNIKALNY OPIS META DLA SOCIAL MEDIA]" />
     <meta property="og:type" content="website" />
+    
+    <meta name="msvalidate" content="[TUTAJ WPISZ SWÓJ UNIKALNY KOD WERYFIKACYJNY BING]" />
+
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -41,7 +62,7 @@ const faqData = await generateFAQContent(topic);
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1159782502628502'); // Nasz ID Pixela
+      fbq('init', '1159782502628502');
       fbq('track', 'PageView');
     </script>
     <noscript>
@@ -50,8 +71,7 @@ const faqData = await generateFAQContent(topic);
     </noscript>
     
     <Analytics />
-    
-    </head>
+  </head>
   <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T958KD9G"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
