@@ -14,8 +14,8 @@ const { data } = Astro.props;
                     {item.pytanie}
                 </summary>
                 <p class="faq-answer">
-                    {item.odpowiedz}
-                </p>
+    {item.odpowiedz || item.odpowiedź || 'Treść odpowiedzi jest obecnie niedostępna.'} 
+</p>
             </details>
         ))}
     </div>
