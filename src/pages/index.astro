@@ -28,10 +28,10 @@ const faqData = await generateFAQContent(topic);
     <title>Galeria Ubezpieczeniowa - BIBLIA LANDING PAGES - WZORZEC AKTYWNY</title>
     
     <meta name="description" content="[TUTAJ WPISZ UNIKALNY OPIS STRONY. DLA WZORCA JEST TO PUSTY TEKST.]" />
-    <link rel="canonical" href={canonicalURL} /> <meta property="og:title" content="Galeria Ubezpieczeniowa - WZORZEC AKTYWNY" />
+
+    <meta property="og:title" content="Galeria Ubezpieczeniowa - WZORZEC AKTYWNY" />
     <meta property="og:description" content="[TUTAJ WPISZ UNIKALNY OPIS META DLA SOCIAL MEDIA]" />
     <meta property="og:type" content="website" />
-
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -41,7 +41,7 @@ const faqData = await generateFAQContent(topic);
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1159782502628502');
+      fbq('init', '1159782502628502'); // Nasz ID Pixela
       fbq('track', 'PageView');
     </script>
     <noscript>
@@ -50,7 +50,8 @@ const faqData = await generateFAQContent(topic);
     </noscript>
     
     <Analytics />
-  </head>
+    
+    </head>
   <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T958KD9G"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
