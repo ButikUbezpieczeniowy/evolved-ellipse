@@ -1,4 +1,9 @@
 ---
+// index.astro - WZORZEC AKTYWNY (zaimplementowany moduł Gemini i Placeholder OpenAI)
+// Architektura: Astro.js + Vercel
+// AI/SEO: Dynamiczne FAQ i Schema JSON z Gemini API
+// Compliance: Zabezpieczenie przed duplikacją (canonicalURL)
+
 // Importujemy wszystkie komponenty
 import Naglowek from '../components/Naglowek.astro';
 import Hero from '../components/Hero.astro';
@@ -9,28 +14,25 @@ import CTA from '../components/CTA.astro';
 import Stopka from '../components/Stopka.astro';
 import Analytics from '../components/Analytics.astro';
 import FAQSection from '../components/FAQSection.astro'; 
+import CzatbotPlaceholder from '../components/CzatbotPlaceholder.astro'; // MIEJSCE DLA CZATBOTA OPENAI
 
-// IMPORTUJEMY FUNKCJĘ POBIERAJĄCĄ DANE Z GEMINI API:
+// Importujemy logikę Gemini
 import generateFAQContent from '../ai/gemini-logic.js'; 
 
-// 1. NAPRAWA BŁĘDU KANONICZNEGO URL (Używamy Astro.url.href, aby ZAWSZE działało)
-const canonicalURL = Astro.url.href;
-
-// DEFINIUJEMY TEMAT I POBIERAMY DANE PRZED RENDEROWANIEM
+// === LOGIKA GENERACJI STRONY ===
+// 1. Kanoniczny URL (RODO/SEO)
+const canonicalURL = Astro.url.href; 
+// 2. Temat dla AI
 const topic = "Ogólne ubezpieczenia dla firm i osób prywatnych - WZORZEC AKTYWNY";
-const faqData = await generateFAQContent(topic);
----
 
----
-// Importujemy wszystkie komponenty (zostaje)
-import Naglowek from '../components/Naglowek.astro';
-// ... Hero, ProblemRozwiazanie, KluczoweProdukty, Opinie, CTA, Stopka, Analytics, FAQSection
-import FAQSection from '../components/FAQSection.astro'; 
-import generateFAQContent from '../ai/gemini-logic.js'; 
+// 3. Wywołanie logiki AI (zabezpieczone przed krytycznym błędem - FALLBACK z gemini-logic.js)
+// W trybie budowania (Build Time Generation) logikę uruchamiamy tutaj.
+const faqResult = await generateFAQContent(topic);
 
-const canonicalURL = Astro.url.href; // NAPRAWIONE
-const topic = "Ogólne ubezpieczenia dla firm i osób prywatnych - WZORZEC AKTYWNY";
-const faqData = await generateFAQContent(topic);
+// Sprawdzamy, czy Gemini zwróciło dane FAQ i Schema JSON
+const faqData = faqResult || []; // Zabezpieczenie przed null
+const schemaJSON = faqResult.schemaJSON || '';
+// ===============================
 ---
 
 <html lang="pl">
@@ -40,20 +42,69 @@ const faqData = await generateFAQContent(topic);
     
     <title>Galeria Ubezpieczeniowa - BIBLIA LANDING PAGES - WZORZEC AKTYWNY</title>
     
+    <link rel="canonical" href={canonicalURL} />
+    
+    {/* Preloady i SEO meta tagi z Twojego pliku */}
     <link rel="preload" href="/fonts/nazwa-czcionki-regular.woff2" as="font" type="font/woff2" crossorigin>
-
     <link rel="mask-icon" href="/safari-pin-icon.svg" color="#0056b3">
 
-    <meta name="description" content="[TUTAJ WPISZ UNIKALNY OPIS STRONY. DLA WZORCA JEST TO PUSTY TEKST.]" />
-    <link rel="canonical" href={canonicalURL} /> 
+    <meta name="description" content="[TUTAJ WPISZ UNIKALNY OPIS DLA SEO]" />
+    
+    {/* Schema JSON FAQ - KRYTYCZNE DLA SEO. WSTRZYKNIĘTE Z GEMINI API */}
+    {faqData && schemaJSON && (
+        <script type="application/ld+json" is:inline set:html={schemaJSON} />
+    )}
+    
+    <Analytics />
+  </head>
+  <body>
+    {/* Warstwa danych analitycznych (wymagana przez GTM/GA4/Meta) */}
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WP8W973"
+              height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    
+    <Naglowek />
+    
+    <main>
+      <Hero />
+      <ProblemRozwiazanie />
+      <KluczoweProdukty />
+      <Opinie />
+      
+      {/* SEKCJA FAQ - Zasilana danymi z Gemini lub FALLBACKIEM */}
+      <FAQSection data={faqData} />
+      
+      <CTA />
+    </main>
+    
+    <Stopka />
 
-    <meta property="og:title" content="Galeria Ubezpieczeniowa - WZORZEC AKTYWNY" />
-    <meta property="og:description" content="[TUTAJ WPISZ UNIKALNY OPIS META DLA SOCIAL MEDIA]" />
-    <meta property="og:type" content="website" />
+    {/* MIEJSCE DLA CZATBOTA OPENAI (PLANNED) */}
+    <CzatbotPlaceholder /> 
+    
+    {/* Skrypty analityczne (Twoje oryginalne) */}
+    <script is:inline>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WP8W973');
+    </script>
+
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-6CBBHT3SF0" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6CBBHT3SF0');
+    </script>
+    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <meta name="msvalidate" content="[TUTAJ WPISZ SWÓJ UNIKALNY KOD WERYFIKACYJNY BING]" />
-
-    <script>
+    
+    <script is:inline>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -69,24 +120,5 @@ const faqData = await generateFAQContent(topic);
       <img height="1" width="1" style="display:none"
            src="https://www.facebook.com/tr?id=1159782502628502&ev=PageView&noscript=1"/>
     </noscript>
-    
-    <Analytics />
-  </head>
-  <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T958KD9G"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    
-    <Naglowek />
-    <main>
-      <Hero />
-      <ProblemRozwiazanie />
-      <KluczoweProdukty />
-      
-      <FAQSection data={faqData} />
-      
-      <Opinie />
-      <CTA />
-    </main>
-    <Stopka />
   </body>
 </html>

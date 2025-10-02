@@ -1,0 +1,24 @@
+// src/components/CzatbotPlaceholder.astro
+---
+// Komponent jest wizualnym uchwytem (anchor) dla zewnętrznego/asynchronicznego skryptu Czatbota.
+// W tym miejscu w sobotę/jutro wdrożysz faktyczną logikę Czatbota OpenAI.
+// Wzór używa Tailwind CSS, więc style są wbudowane w klasy.
+---
+<aside id="openai-czatbot-anchor" class="fixed bottom-6 right-6 z-[9999]">
+    <div 
+        role="button" 
+        aria-label="Czatbot ubezpieczeniowy" 
+        class="
+            bg-blue-600 hover:bg-blue-700 
+            text-white p-4 rounded-full shadow-2xl 
+            cursor-pointer 
+            transition duration-300 transform hover:scale-105
+            flex items-center justify-center
+        "
+    >
+        {/* Ikona dymku chatu */}
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H16.5m1.5-3.5h-13.5A2.25 2.25 0 0 0 2 8.5v5A2.25 2.25 0 0 0 4.25 15h2a.75.75 0 0 1 .53-.22L12 11.5l4.72 3.28a.75.75 0 0 1 .53.22h2A2.25 2.25 0 0 0 22 13.5v-5A2.25 2.25 0 0 0 19.75 6Z" />
+        </svg>
+    </div>
+</aside>

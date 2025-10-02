@@ -28,18 +28,32 @@ const FAQ_SCHEMA = {
   },
 };
 
+// Dane FALLBACK na wypadek problemu z API
+const FALLBACK_FAQ = [
+    {
+        pytanie: "Co to jest polisa?", 
+        odpowiedz: "Dokument potwierdzający zawarcie umowy ubezpieczenia, wydawany przez ubezpieczyciela." 
+    },
+    {
+        pytanie: "Jak zgłosić szkodę?", 
+        odpowiedz: "Szkodę można szybko zgłosić online za pośrednictwem dedykowanego formularza na stronie ubezpieczyciela." 
+    },
+];
+
+/**
+ * Generuje FAQ w formacie JSON (dla frontendu) oraz JSON-LD (dla SEO).
+ * @param {string} topic - Temat, na podstawie którego AI ma generować pytania/odpowiedzi.
+ * @returns {object} {faqData: Array, schemaJSON: string}
+ */
 export default async function generateFAQContent(topic) { 
-  // 1. Sprawdzenie, czy klucz istnieje
+  // FALLBACK 1: Sprawdzenie, czy klucz istnieje
   if (!process.env.GEMINI_API_KEY) {
-    console.warn("Brak klucza GEMINI_API_KEY w środowisku Vercel. Zwracam bezpieczny Mock-up.");
-    // FALLBACK 1: Zwracamy statyczne dane, jeśli klucz nie został w ogóle ustawiony.
-    return [
-      { pytanie: "Co to jest polisa?", odpowiedz: "Dokument potwierdzający zawarcie umowy ubezpieczenia." },
-      { pytanie: "Jakie są korzyści z AI?", odpowiedzą: "AI dynamicznie generuje unikalne treści SEO, ale klucz API jest wymagany do pełnej funkcjonalności." },
-    ];
+    console.warn("Brak klucza GEMINI_API_KEY w środowisku. Używam bezpiecznego Mock-upu (FALLBACK).");
+    // Wracamy z pustym schematem, aby uniknąć błędów, ale z danymi dla widoku.
+    return { faqData: FALLBACK_FAQ, schemaJSON: '' };
   }
   
-  const prompt = `Jesteś ekspertem SEO i specjalistą w dziedzinie ubezpieczeń. Wygeneruj 5 Często Zadawanych Pytań (FAQ) i odpowiedzi na temat: "${topic}". Treść musi być unikalna i merytoryczna. Użyj formatu JSON zgodnie z dostarczonym schematem.`;
+  const prompt = `Jesteś ekspertem SEO i specjalistą w dziedzinie ubezpieczeń. Wygeneruj 5 Często Zadawanych Pytań (FAQ) i odpowiedzi na temat: "${topic}". Treść musi być unikalna i merytoryczna. Zwróć wynik **wyłącznie** jako tablicę JSON.`;
 
   try {
     const response = await ai.models.generateContent({
@@ -51,13 +65,30 @@ export default async function generateFAQContent(topic) {
       },
     });
 
-    return JSON.parse(response.text.trim());
+    const faqData = JSON.parse(response.text.trim());
+    
+    // Generowanie Schema JSON (JSON-LD) dla SEO
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map(item => ({
+            "@type": "Question",
+            "name": item.pytanie,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.odpowiedz
+            }
+        }))
+    };
+    
+    return {
+        faqData,
+        schemaJSON: JSON.stringify(schema, null, 2)
+    };
+    
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    // FALLBACK 2: Jeśli klucz zawiódł podczas połączenia (np. błąd 400), zwracamy bezpieczny Mock-up.
-    console.error(`Błąd API Gemini: ${errorMessage}. Zwracam bezpieczny Mock-up.`);
-    return [
-      { pytanie: "Błąd Ładowania FAQ", odpowiedź: "Przepraszamy, tymczasowo nie można połączyć się z AI. Proszę sprawdzić zmienne środowiskowe Vercel (GEMINI_API_KEY)." },
-    ];
+    console.error("Błąd API Gemini podczas generowania FAQ:", error);
+    // FALLBACK 2: Jeśli API zawiodło w trakcie połączenia, zwracamy Mock-up.
+    return { faqData: FALLBACK_FAQ, schemaJSON: '' };
   }
-} 
+}
