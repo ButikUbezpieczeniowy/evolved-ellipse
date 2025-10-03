@@ -1,0 +1,24 @@
+---
+// src/components/ChatWidget.astro
+
+// Uzupełnione dane kontaktowe do Diany Sugier
+const whatsappNumber = "48533488848"; // numer z kodem kraju 48
+const messengerProfile = "diana.sugier";
+---
+
+<div class="chat-widget">
+  <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" class="chat-icon whatsapp" aria-label="Skontaktuj się przez WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.902-.539-5.57-1.502l-6.162 1.688a.709.709 0 0 1-.84-.841zM7.427 4.988c.365-.632 1.053-.96 1.488-1.018.45-.062.898.024 1.29.186.417.17.728.463.957.834.249.4.358.87.324 1.353-.028.414-.159.813-.368 1.157l-.206.326c-.187.295-.349.567-.482.812.139.42.366.81.67 1.155.454.512 1.012.915 1.63 1.196.342.153.64.248.898.27.325.025.626-.088.857-.291.229-.203.435-.43.649-.661l.214-.231c.29-.313.639-.526 1.028-.602.433-.082.871-.013 1.261.188.42.215.753.536.966.945.228.434.306.93.228 1.414-.083.498-.271.97-.542 1.383-.31.455-.705.83-1.164 1.118-.52.32-1.12.52-1.765.526-.433.008-.867-.063-1.284-.205-.59-.2-1.15-.505-1.666-.9-1.227-.925-2.22-2.09-2.934-3.433-.217-.413-.389-.844-.508-1.285-.152-.563-.133-1.157.062-1.727.124-.36.31-.69.553-.984l.243-.291z"></path></svg>
+  </a>
+  <a href={`https://m.me/${messengerProfile}`} target="_blank" rel="noopener noreferrer" class="chat-icon messenger" aria-label="Skontaktuj się przez Messenger">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.615 4.456 8.65l-2.456 4.239 4.284-2.319c1.238.556 2.613.869 4.053.869 6.627 0 12-4.975 12-11.111s-5.373-11.111-12-11.111zm1.192 14.956l-2.203-2.698-4.833 2.698 5.495-5.786 2.203 2.698 4.833-2.698-5.495 5.786z"></path></svg>
+  </a>
+</div>
+
+<style>
+  .chat-widget { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
+  .chat-icon { display: flex; justify-content: center; align-items: center; width: 60px; height: 60px; border-radius: 50%; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.2s ease-in-out; }
+  .chat-icon:hover { transform: scale(1.1); }
+  .whatsapp { background-color: #25D366; }
+  .messenger { background-color: #0084FF; }
+</style>

@@ -1,46 +1,64 @@
-# Astro Starter Kit: Basics
+# Quantum Leap Engine 🚀
 
-```sh
-npm create astro@latest -- --template basics
-```
+**Quantum Leap** to zintegrowany system do błyskawicznego projektowania, tworzenia i wdrażania wysokowydajnych landing page'y, oparty na frameworku Astro.js.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+System został zaprojektowany z myślą o maksymalnej automatyzacji i uproszczeniu procesu publikacji, od pomysłu do działającej strony w internecie.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Stos Technologiczny
 
-```text
+* **Framework:** [Astro.js](https://astro.build/)
+* **Hosting:** [Vercel](https://vercel.com/)
+* **Kontrola wersji:** [GitHub](https://github.com/)
+* **AI & SEO:** [Google Gemini API](https://ai.google.dev/) do dynamicznego generowania treści (FAQ, Schema JSON).
+
+---
+
+## Struktura Projektu
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+├── public/                 # Statyczne pliki (favicon, robots.txt)
+├── src/
+│   ├── ai/                 # Logika AI (np. gemini-logic.js)
+│   ├── assets/             # Zasoby przetwarzane przez Astro (np. obrazy tła)
+│   ├── components/         # Reużywalne komponenty .astro
+│   ├── layouts/            # Główne szablony stron (Layout.astro)
+│   ├── pages/              # Każdy plik to osobna strona/landing page
+│   └── styles/             # Globalne style CSS
+├── astro.config.mjs        # Konfiguracja Astro
+├── package.json            # Zależności projektu
+└── PROJECT_GUIDELINES.md   # Wytyczne, Style Guide i Szablon Briefu
+---
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Jak Stworzyć Nowy Landing Page?
 
-## 🧞 Commands
+Proces tworzenia nowej strony został zredukowany do 3 prostych kroków:
 
-All commands are run from the root of the project, from a terminal:
+1.  **Przygotuj Brief:** Skopiuj szablon briefu z pliku `PROJECT_GUIDELINES.md` i wypełnij go wszystkimi potrzebnymi informacjami (treść, SEO, cele).
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+2.  **Stwórz Nowy Plik Strony:** W folderze `src/pages/` stwórz nowy plik, np. `nowa-kampania.astro`.
 
-## 👀 Want to learn more?
+3.  **Zbuduj Stronę z Komponentów:** Użyj głównego szablonu `<Layout>` i złóż stronę z gotowych "klocków" znajdujących się w folderze `src/components/`, przekazując do nich treści z briefu.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Przykład minimalnej struktury pliku `src/pages/nowa-kampania.astro`:
+
+```astro
+---
+import Layout from '../layouts/Layout.astro';
+import Naglowek from '../components/Naglowek.astro';
+import Stopka from '../components/Stopka.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<Layout title="Tytuł nowej kampanii" description="Opis dla SEO">
+  
+  <Naglowek />
+  
+  <main>
+    <h1>To jest nowa kampania!</h1>
+    <CTA />
+  </main>
+  
+  <Stopka />
+
+</Layout>
