@@ -1,7 +1,7 @@
 ---
-// src/components/Stopka.astro
+// Połączone dane: oryginalna zmienna + nowe dane z pliku .txt
+const dzisiejszyRok = new Date().getFullYear();
 
-// Dane wczytane z pliku biura dane kontaktowe.txt
 const offices = [
   {
     city: "Ożarów Mazowiecki",
@@ -14,8 +14,8 @@ const offices = [
   },
   {
     city: "Warszawa, Białołęka",
-    address: "ul. Białołęcka 222, 03-253",
-    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Białołęcka+222,+03-253+Warszawa",
+    address: "ul. Białołęcka 222, 03-253, Centrum Handlowe",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Białołęcka+222,+03-253+Warszawa", // Przykładowy link, do weryfikacji
     contacts: [
       "Piotr Zasim: 794 004 604"
     ]
@@ -23,7 +23,7 @@ const offices = [
   {
     city: "Warszawa, Targówek",
     address: "ul. Ostródzka 190, 03-289",
-    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Ostródzka+190,+03-289+Warszawa",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Ostródzka+190,+03-289+Warszawa", // Przykładowy link, do weryfikacji
     contacts: [
       "Piotr Fruczek: 501 384 922"
     ]
@@ -31,7 +31,7 @@ const offices = [
   {
     city: "Warszawa, Wesoła (Biuro On-Line)",
     address: "ul. Jana Pawła II 37, 05-077",
-    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Jana+Pawła+II+37,+05-077+Warszawa+Wesoła",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Jana+Pawła+II+37,+05-077+Warszawa+Wesoła", // Przykładowy link, do weryfikacji
     contacts: [
       "Darek Wrześniak: 602 612 682"
     ]
@@ -42,11 +42,9 @@ const socialLinks = {
   facebook: "https://facebook.com/galeria.ubezpieczeniowa",
   googleBusiness: "https://share.google/utKTyVQAA0JBoXpXG"
 };
-
-const companyName = "Galeria Ubezpieczeniowa";
 ---
 
-<footer class="footer-container">
+<footer>
   <div class="footer-content">
     <div class="offices-section">
       <h3>Nasze Biura</h3>
@@ -70,4 +68,98 @@ const companyName = "Galeria Ubezpieczeniowa";
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg>
         </a>
         <a href={socialLinks.googleBusiness} target="_blank" rel="noopener noreferrer" aria-label="Google Moja Firma">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.19,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.19,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,4.72C19,4.72 16.56,2 12.19,2C6.42,2 2.03,6.8 2.03,12C2.03,17.05 6.16,22 12.19,22C17.6,22 21.54,18.33 21.54,12.81C21.54,11.76 21.35,11.1 21.35,11.1Z"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {dzisiejszyRok} Galeria Ubezpieczeniowa. Wszelkie prawa zastrzeżone.</p>
+  </div>
+</footer>
+
+<style>
+  /* === ZACHOWANE ORYGINALNE STYLE === */
+  footer {
+    background-color: #333; /* Zachowany oryginalny kolor tła */
+    color: white; /* Zachowany oryginalny kolor tekstu */
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  /* === NOWE, DODANE STYLE === */
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto 30px auto; /* Dodany margines dolny */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: left; /* Domyślne wyrównanie dla sekcji */
+  }
+  .offices-section {
+    flex: 3;
+    min-width: 300px;
+  }
+  .social-section {
+    flex: 1;
+    min-width: 200px;
+  }
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #fff; /* Lepszy kontrast */
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+  }
+  .offices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+  .office {
+    line-height: 1.6;
+  }
+  .office strong {
+    font-size: 1.1em;
+  }
+  .address {
+    margin: 5px 0 10px;
+    font-size: 0.95em;
+    color: #ccc;
+  }
+  .contacts {
+    margin-bottom: 10px;
+  }
+  .contact-person {
+    margin: 2px 0;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  .office a {
+    color: #00aaff; /* Zmieniony kolor linku dla lepszej widoczności */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .office a:hover {
+    text-decoration: underline;
+  }
+  .social-links {
+    display: flex;
+    gap: 20px;
+  }
+  .social-links a {
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  .social-links a:hover {
+    color: #00aaff;
+  }
+  .footer-bottom {
+    padding-top: 20px;
+    border-top: 1px solid #555; /* Oddzielenie od reszty stopki */
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+</style>
