@@ -1,13 +1,17 @@
+---
+// src/components/CTA.astro
+const recaptchaSiteKey = import.meta.env.ASTRO_PUBLIC_RECAPTCHA_SITE_KEY;
+---
+
 <section class="cta">
   <h2>Zrób pierwszy krok do lepszej ochrony. To nic nie kosztuje.</h2>
   
-  <form name="kontakt" method="POST" data-netlify="true">
-    <input type="hidden" name="form-name" value="kontakt" />
-    
+  <form 
+    action="https://formspree.io/f/TWOJ_UNIKALNY_KOD" method="POST"
+  >
     <input type="text" name="imie" placeholder="Twoje Imię" required />
     <input type="tel" name="telefon" placeholder="Numer Telefonu" required />
     <input type="email" name="email" placeholder="Adres e-mail" required />
-    
     <select name="produkt" required>
       <option disabled selected value="">Wybierz interesujący Cię produkt...</option>
       <optgroup label="Dla Ciebie i Rodziny">
@@ -25,7 +29,9 @@
         <option value="Gwarancje Ubezpieczeniowe">Gwarancje Ubezpieczeniowe</option>
       </optgroup>
     </select>
-    
+
+    <div class="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
+
     <button type="submit">Chcę bezpłatną konsultację</button>
   </form>
   
@@ -33,5 +39,16 @@
 </section>
 
 <style>
-  /* Style dla sekcji CTA */
+  .cta { background-color: #004a99; color: white; padding: 3rem 1.5rem; text-align: center; }
+  .cta h2 { font-size: 2rem; margin-bottom: 2rem; }
+  form { display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 600px; margin: 0 auto; }
+  @media (min-width: 768px) {
+    form { grid-template-columns: 1fr 1fr; }
+    form select, form button, .g-recaptcha { grid-column: 1 / -1; }
+  }
+  input, select, button { padding: 1rem; font-size: 1rem; border-radius: 5px; border: none; }
+  button { background-color: #ffc107; color: #333; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease; }
+  button:hover { background-color: #ffca2c; }
+  .rodo { margin-top: 1rem; font-size: 0.8rem; opacity: 0.8; }
+  .g-recaptcha { display: flex; justify-content: center; margin-bottom: 1rem; }
 </style>
