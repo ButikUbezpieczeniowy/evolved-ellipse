@@ -1,97 +1,335 @@
 ---
-// Komponent sekcji z kluczowymi produktami
+// === ZARZĄDZANIE PRODUKTAMI I LINKAMI ===
+// Edytuj poniższe listy, aby zarządzać produktami.
+// 'ikona' to nazwa ikony z listy poniżej. Dostępne ikony: 
+// samochod, dom, podroz, zycie, dziecko, rower, rezygnacja, assistance, firma, oc_zawodowe, gwarancje, dron
+
+const produktyDlaCiebie = [
+  {
+    nazwa: "NNW dla Dziecka",
+    ubezpieczyciel: "PZU",
+    opis: "Zabezpiecz przyszłość swojego dziecka na wypadek nieszczęśliwych wypadków w szkole i poza nią.",
+    link: "https://ubestrefa.pl/",
+    tekstPrzycisku: "Zobacz ofertę",
+    kod: "użyj kodu: lq8mfw",
+    ikona: "dziecko"
+  },
+  {
+    nazwa: "Ubezpieczenie na Życie",
+    ubezpieczyciel: "Generali",
+    opis: "Kompleksowa ochrona życia i zdrowia, zapewniająca wsparcie finansowe dla Ciebie i Twoich bliskich.",
+    link: "https://portal.generali.pl/ewniosek/eshop/gpr/105171",
+    tekstPrzycisku: "Sprawdź ofertę",
+    ikona: "zycie"
+  },
+  {
+    nazwa: "Ubezpieczenie OC/AC",
+    ubezpieczyciel: "Generali",
+    opis: "Pełen pakiet ubezpieczeń komunikacyjnych dla Twojego pojazdu, przyczepy, motocykla lub ciągnika.",
+    link: "https://moje.generali.pl/frontend/www/pojazd/105171",
+    tekstPrzycisku: "Oblicz składkę online",
+    ikona: "samochod"
+  },
+  {
+    nazwa: "Ubezpieczenie Domu",
+    ubezpieczyciel: "Proama",
+    opis: "Chroń swój dom lub mieszkanie przed zdarzeniami losowymi, kradzieżą i innymi ryzykami.",
+    link: "https://www.proama.pl/ubezpieczenie-mieszkania-kalkulator-oc/lead?CD_AGENT=105171",
+    tekstPrzycisku: "Oblicz składkę online",
+    ikona: "dom"
+  },
+  {
+    nazwa: "Ubezpieczenie Turystyczne",
+    ubezpieczyciel: "Warta",
+    opis: "Podróżuj bez obaw z ubezpieczeniem kosztów leczenia, NNW i ochrony bagażu na całym świecie.",
+    link: "https://www.warta.pl/kalkulator/ubezpieczenie-turystyczne/twoja-podroz?p=ZNIZKAEKSTRAWWW1",
+    tekstPrzycisku: "Kup ubezpieczenie",
+    ikona: "podroz"
+  },
+  {
+    nazwa: "NNW Szkolne",
+    ubezpieczyciel: "Inter Risk",
+    opis: "Indywidualne ubezpieczenie następstw nieszczęśliwych wypadków dla uczniów i studentów.",
+    link: "https://nnwszkolne.interrisk.pl/start?guw=v3qs8j&id_source=21131111",
+    tekstPrzycisku: "Kup online",
+    kod: "kod jest w linku",
+    ikona: "dziecko"
+  },
+  {
+    nazwa: "Rezygnacja z Podróży",
+    ubezpieczyciel: "Wiener",
+    opis: "Odzyskaj koszty biletów, hoteli i wycieczek w przypadku nieoczekiwanej rezygnacji z wyjazdu.",
+    link: "https://sprzedaz.wiener.pl/rezygnacjazimprezy/r/tel-rez123456789",
+    tekstPrzycisku: "Sprawdź ofertę",
+    ikona: "rezygnacja"
+  },
+    {
+    nazwa: "Ubezpieczenie Rowerzysty",
+    ubezpieczyciel: "Generali",
+    opis: "Pełna ochrona dla Ciebie i Twojego roweru - OC, NNW oraz Casco na wypadek kradzieży i zniszczenia.",
+    link: "https://form.moje.generali.pl/ubezpieczenie-rowerowe/kalkulator/105171",
+    tekstPrzycisku: "Oblicz składkę",
+    ikona: "rower"
+  },
+];
+
+const produktyDlaFirmy = [
+  {
+    nazwa: "Ubezpieczenie Firmy",
+    ubezpieczyciel: "Warta",
+    opis: "Kompleksowa ochrona majątku firmy, OC działalności oraz wsparcie w nieprzewidzianych sytuacjach.",
+    link: "https://www.warta.pl/ubezpieczenia-dla-firm/warta-ekstrabiznes-plus/lead?p=ZNIZKAEKSTRAWWW1",
+    tekstPrzycisku: "Poproś o ofertę",
+    ikona: "firma"
+  },
+  {
+    nazwa: "OC Zawodowe",
+    ubezpieczyciel: "Warta",
+    opis: "Zabezpiecz się przed finansowymi konsekwencjami błędów popełnionych w trakcie wykonywania zawodu.",
+    link: "https://www.warta.pl/ubezpieczenia-dla-firm/oc-zawodowe/lead?p=ZNIZKAEKSTRAWWW1",
+    tekstPrzycisku: "Poproś o ofertę",
+    ikona: "oc_zawodowe"
+  },
+  {
+    nazwa: "Gwarancje Ubezpieczeniowe",
+    ubezpieczyciel: "Warta",
+    opis: "Zwiększ wiarygodność swojej firmy i zabezpiecz kontrakty dzięki gwarancjom wadialnym, kontraktowym i innym.",
+    link: "https://www.warta.pl/ubezpieczenia-dla-firm/gwarancje-ubezpieczeniowe/lead?p=ZNIZKAEKSTRAWWW1",
+    tekstPrzycisku: "Poproś o ofertę",
+    ikona: "gwarancje"
+  },
+  {
+    nazwa: "Podróże Służbowe",
+    ubezpieczyciel: "Wiener",
+    opis: "Zapewnij bezpieczeństwo i wsparcie swoim pracownikom podczas krajowych i zagranicznych delegacji.",
+    link: "https://sprzedaz.wiener.pl/podrozebiznesowe/r/tel-BT12",
+    tekstPrzycisku: "Sprawdź ofertę",
+    ikona: "podroz"
+  },
+    {
+    nazwa: "Ubezpieczenie Dronów",
+    ubezpieczyciel: "Wiener",
+    opis: "Obowiązkowe ubezpieczenie OC dla operatorów dronów, wymagane przez przepisy prawa lotniczego.",
+    link: "https://sprzedaz.wiener.pl/ocpilota/r/tel-DRON123456789",
+    tekstPrzycisku: "Kup online",
+    ikona: "dron"
+  },
+];
+
+// Definicje ikon SVG
+const ikony = {
+  samochod: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-1.875a3.375 3.375 0 0 1 3.375-3.375h9.75a3.375 3.375 0 0 1 3.375 3.375v1.875M3.375 14.25V6.375A2.25 2.25 0 0 1 5.625 4.5h12.75c1.24 0 2.25.75 2.25 2.25v1.125" /></svg>`,
+  dom: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>`,
+  podroz: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75.75v12m0 0 2.25-2.25M12.75 12.75 10.5 10.5M.75 12.75h11.25m6-3.375c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125H3.375c-.621 0-1.125-.504-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125h14.25ZM12 6.375v2.25" /></svg>`,
+  zycie: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>`,
+  dziecko: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>`,
+  rower: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" /></svg>`,
+  rezygnacja: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
+  assistance: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" /></svg>`,
+  firma: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6h1.5m-1.5 3h1.5m-1.5 3h1.5M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>`,
+  oc_zawodowe: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>`,
+  gwarancje: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
+  dron: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" /></svg>`,
+};
 ---
+
 <section class="products">
-  <h2>Ubezpieczenia na każdą potrzebę</h2>
-  <div class="product-categories">
+  <div class="container">
+    <h2>Ubezpieczenia na każdą potrzebę</h2>
     
-    <div class="category">
-      <h3>Dla Ciebie i Rodziny</h3>
-      <ul>
-        <li>
-          <strong>Życie i Zdrowie:</strong> Ochrona na wypadek nieprzewidzianych zdarzeń, prywatna opieka medyczna i zabezpieczenie przyszłości najbliższych.
-        </li>
-        <li>
-          <strong>Samochód i Inne Pojazdy:</strong> Kompleksowe ubezpieczenia OC, AC, NNW i Assistance dla Twojego auta, motocykla czy łodzi.
-        </li>
-        <li>
-          <strong>Dom i Mieszkanie:</strong> Ochrona Twojej nieruchomości, jej wyposażenia oraz OC w życiu prywatnym.
-        </li>
-        <li>
-          <strong>Podróże:</strong> Bezpieczny wyjazd na wakacje lub w podróż służbową, obejmujący koszty leczenia i ochronę bagażu.
-        </li>
-        <li>
-          <strong>Inwestycje i Emerytura:</strong> Produkty, które pomogą Ci budować kapitał na przyszłość i zapewnić sobie godną emeryturę.
-        </li>
-      </ul>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="dla-ciebie">Dla Ciebie i Rodziny</button>
+      <button class="tab-button" data-tab="dla-firmy">Dla Twojej Firmy</button>
     </div>
 
-    <div class="category">
-      <h3>Dla Twojej Firmy</h3>
-      <ul>
-        <li>
-          <strong>Majątek Firmy:</strong> Ubezpieczenie biura, magazynu, sprzętu i towarów od zdarzeń losowych i kradzieży.
-        </li>
-        <li>
-          <strong>Flota Pojazdowa:</strong> Atrakcyjne pakiety ubezpieczeń dla wszystkich pojazdów w Twojej firmie.
-        </li>
-        <li>
-          <strong>OC Działalności:</strong> Ochrona przed roszczeniami finansowymi ze strony klientów i kontrahentów.
-        </li>
-        <li>
-          <strong>Ubezpieczenia Grupowe:</strong> Pakiety na życie i zdrowie dla Twoich pracowników, budujące ich lojalność i bezpieczeństwo.
-        </li>
-        <li>
-          <strong>Gwarancje Ubezpieczeniowe:</strong> Niezbędne w wielu branżach, m.in. budowlanej, do zabezpieczenia kontraktów.
-        </li>
-      </ul>
+    <div class="tab-content active" id="dla-ciebie">
+      <div class="products-grid">
+        {produktyDlaCiebie.map(produkt => (
+          <div class="product-card">
+            <div class="card-icon" set:html={ikony[produkt.ikona]} />
+            <div class="card-content">
+              <h3>{produkt.nazwa} <span class="insurer">({produkt.ubezpieczyciel})</span></h3>
+              <p>{produkt.opis}</p>
+            </div>
+            <div class="card-action">
+              <a href={produkt.link} target="_blank" rel="noopener noreferrer" class="cta-button">{produkt.tekstPrzycisku}</a>
+              {produkt.kod && <p class="promo-code">{produkt.kod}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
 
+    <div class="tab-content" id="dla-firmy">
+      <div class="products-grid">
+        {produktyDlaFirmy.map(produkt => (
+          <div class="product-card">
+            <div class="card-icon" set:html={ikony[produkt.ikona]} />
+            <div class="card-content">
+              <h3>{produkt.nazwa} <span class="insurer">({produkt.ubezpieczyciel})</span></h3>
+              <p>{produkt.opis}</p>
+            </div>
+            <div class="card-action">
+              <a href={produkt.link} target="_blank" rel="noopener noreferrer" class="cta-button">{produkt.tekstPrzycisku}</a>
+              {produkt.kod && <p class="promo-code">{produkt.kod}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
 
+<script>
+  // Prosta logika do przełączania zakładek
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Usunięcie klasy 'active' ze wszystkich przycisków i treści
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      // Dodanie klasy 'active' do klikniętego przycisku i odpowiedniej treści
+      const tabId = button.dataset.tab;
+      const activeContent = document.getElementById(tabId);
+      
+      button.classList.add('active');
+      if (activeContent) {
+        activeContent.classList.add('active');
+      }
+    });
+  });
+</script>
+
 <style>
   .products {
-    text-align: center;
     padding: 80px 20px;
+    background-color: var(--kolor-tla-jasny);
   }
-  .product-categories {
-    display: grid; /* ZMIANA: Użycie Grid dla lepszego wyrównania */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  /* Style dla zakładek */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #ddd;
+  }
+  .tab-button {
+    padding: 1rem 2rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #888;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  .tab-button:hover {
+    color: var(--kolor-glowny-ciemny);
+  }
+  .tab-button.active {
+    color: var(--kolor-glowny-ciemny);
+    font-weight: bold;
+  }
+  .tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--kolor-akcentu);
+  }
+  /* Style dla treści zakładek */
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+  }
+  /* Siatka kart produktowych */
+  .products-grid {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
     text-align: left;
-    max-width: 1200px; /* Dodanie maksymalnej szerokości */
-    margin-left: auto;
-    margin-right: auto;
   }
-  .category {
-    border: none; /* ZMIANA: Usunięcie starej ramki */
+  .product-card {
+    background: var(--kolor-bialy);
     border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 2rem;
-    background-color: var(--kolor-bialy);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* ZMIANA: Dodanie cienia */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ZMIANA: Płynne przejście */
   }
-  .category:hover {
+  .product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.1);
   }
-  .category h3 {
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    color: var(--kolor-akcentu);
+    background-color: var(--kolor-glowny-ciemny);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .card-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  .card-content {
+    flex-grow: 1;
+  }
+  .card-content h3 {
     margin-top: 0;
-    border-bottom: 2px solid var(--kolor-akcentu); /* ZMIANA: Podkreślenie akcentem */
-    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+  .insurer {
+    font-weight: normal;
+    font-size: 1.1rem;
+    color: #6c757d;
+  }
+  .card-content p {
+    color: #6c757d;
+    font-size: 0.95rem;
+  }
+  .card-action {
+    margin-top: 1.5rem;
+  }
+  .cta-button {
     display: inline-block;
+    background-color: var(--kolor-glowny-ciemny);
+    color: var(--kolor-bialy);
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
   }
-  .category ul {
-    list-style: none;
-    padding: 0;
+  .cta-button:hover {
+    background-color: #000;
   }
-  .category li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
-  }
-  .category li:last-child {
-    border-bottom: none;
+  .promo-code {
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--kolor-tekstu-ciemny);
+    background-color: #e9ecef;
+    padding: 5px;
+    border-radius: 3px;
   }
 </style>
