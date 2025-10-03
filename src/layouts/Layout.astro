@@ -29,7 +29,8 @@ const { title, description } = Astro.props;
     <Analytics />
         
         <slot name="head" />
-	</head>
+	
+      </head>
 	<body>
         <slot /> 
 
@@ -47,7 +48,39 @@ const { title, description } = Astro.props;
         </noscript>
         
         </body>
-</html>
+ {/* Twoje istniejące tagi meta, title, etc. */}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <style is:global>
+      /* Definicja palety kolorów i globalnych stylów */
+      :root {
+        --kolor-glowny-ciemny: #0D2C4F;
+        --kolor-akcentu: #FFC107;
+        --kolor-tla-jasny: #F8F9FA;
+        --kolor-tekstu-ciemny: #343A40;
+        --kolor-bialy: #FFFFFF;
+      }
+
+      body {
+        font-family: 'Lato', sans-serif;
+        color: var(--kolor-tekstu-ciemny);
+        margin: 0;
+        padding: 0;
+        background-color: var(--kolor-bialy);
+      }
+
+      h1, h2, h3 {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--kolor-glowny-ciemny);
+      }
+    </style>
+</head>
+<body>
+    <slot />
+</body>
+        </html>
 
 <style is:global>
   /* Tutaj możesz dodać globalne style, np. reset CSS */
