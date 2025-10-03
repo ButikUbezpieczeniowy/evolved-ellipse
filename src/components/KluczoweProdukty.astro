@@ -1,153 +1,220 @@
 ---
-// === GŁÓWNA KONFIGURACJA PRODUKTÓW ===
-// Poniżej znajduje się cała struktura oferty oparta na Twoim pliku .md
-// Możesz tutaj edytować nazwy, linki i opisy w przyszłości.
-
+// === OSTATECZNA KONFIGURACJA PRODUKTÓW - WERSJA 1:1 ZGODNA Z POLECENIEM ===
 const daneProduktow = {
-  // === ZAKŁADKA: DLA CIEBIE ===
+  // === ZAKŁADKA: "Dla Ciebie" - 15 PUNKTÓW ===
   dlaCiebie: [
     {
-      kategoria: "Podróże",
-      ikona: "podroz",
+      kategoria: "Podróże", ikona: "podroz",
       oferty: [
-        { ubezpieczyciel: "Generali", opis: "Podróże krajowe i zagraniczne", link: "https://form.moje.generali.pl/ubezpieczenia-podrozne/zagraniczne/105171" },
-        { ubezpieczyciel: "UNIQA", opis: "Koszty leczenia w kraju i za granicą", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-podrozne/destinations?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
-        { ubezpieczyciel: "Warta", opis: "Podróże polskie i zagraniczne", link: "https://www.warta.pl/kalkulator/ubezpieczenie-turystyczne/twoja-podroz?p=ZNIZKAEKSTRAWWW1" },
-        { ubezpieczyciel: "Wiener", opis: "Ubezpieczenie dla Turysty", link: "https://sprzedaz.wiener.pl/turystyczne/r/tel-TOUR123" },
-        { ubezpieczyciel: "Kontakt", opis: "Bezpłatna wycena - oddzwonimy", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Generali", opis: "Podróże i polskie i zagraniczne", link: "https://form.moje.generali.pl/ubezpieczenia-podrozne/zagraniczne/105171" },
+        { ubezpieczyciel: "Uniqa", opis: "Koszty leczenia w kraju i za granicą", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-podrozne/destinations?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
+        { ubezpieczyciel: "WARTA", opis: "Podróże i Polskie i Zagraniczne", link: "https://www.warta.pl/kalkulator/ubezpieczenie-turystyczne/twoja-podroz?p=ZNIZKAEKSTRAWWW1" },
+        { ubezpieczyciel: "Wiener", opis: "dla Turysty", link: "https://sprzedaz.wiener.pl/turystyczne/r/tel-TOUR123" },
+        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
     {
-      kategoria: "Koszty rezygnacji",
-      ikona: "rezygnacja",
+      kategoria: "Koszty rezygnacji z podróży", ikona: "rezygnacja",
       oferty: [
-        { ubezpieczyciel: "Generali", opis: "Rezygnacja z podróży: Polska, Europa, Świat", link: "https://form.moje.generali.pl/ubezpieczenie-od-kosztow-rezygnacji/kalkulator/105171" },
-        { ubezpieczyciel: "UNIQA", opis: "Koszty rezygnacji i skrócenia wyjazdu", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-rezygnacji/start?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
-        { ubezpieczyciel: "Warta", opis: "Koszty odwołania podróży", link: "https://www.warta.pl/kalkulator/ubezpieczenie-rezygnacji-z-podrozy/twoja-podroz?p=ZNIZKAEKSTRAWWW1" },
-        { ubezpieczyciel: "Wiener", opis: "Rezygnacja z imprezy turystycznej", link: "https://sprzedaz.wiener.pl/rezygnacjazimprezy/r/tel-rez123456789" },
+        { ubezpieczyciel: "Uniqa", opis: "Koszty rezygnacji z podróży", link: "https://www.uniqa.pl/kalkulator/rezygnacjazpodrozy/variants?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
+        { ubezpieczyciel: "Generali", opis: "Koszty rezygnacji z podróży: i w Polska i za granicą", link: "https://form.moje.generali.pl/ubezpieczenia-podrozne/rezygnacja/105171" },
+        { ubezpieczyciel: "Warta", opis: "Koszty odwołania podróży", link: "https://www.warta.pl/kalkulator/ubezpieczenie-rezygnacji-z-podrozy/twoja-podroz?p=ZNIZKAEKSTRAWWW2" },
+        { ubezpieczyciel: "Wiener", opis: "Koszty odwołania podróży", link: "https://sprzedaz.wiener.pl/rezygnacjazimprezy/r/tel-rez123456789" },
+        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
     {
-      kategoria: "dla Twojego Domu",
-      ikona: "dom",
+      kategoria: "dla Dziecka", ikona: "dziecko",
       oferty: [
-        { ubezpieczyciel: "Generali", opis: "Dom lub Mieszkanie", link: "https://moje.generali.pl/frontend/www/dom/105171" },
-        { ubezpieczyciel: "Proama", opis: "Dom lub Mieszkanie", link: "https://www.proama.pl/ubezpieczenie-mieszkania-kalkulator-oc/lead?CD_AGENT=105171" },
-        { ubezpieczyciel: "UNIQA", opis: "Dom, Mieszkanie, Budowa", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-mieszkania/property-details?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
-        { ubezpieczyciel: "Wiener", opis: "Ubezpieczenie Cztery Kąty", link: "https://sprzedaz.wiener.pl/4k/r/tel-4K1234" },
-        { ubezpieczyciel: "Kontakt", opis: "Porównamy oferty za Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Uniqa", opis: "NNW dla Dzieci", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-szkolne-nnw/insurance?PartnerType=PA&PartnerId1=711713&PartnerId2=LP" },
+        { ubezpieczyciel: "Uniqa", opis: "NNW dla Studentów", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-szkolne-nnw/insurance?PartnerType=PA&PartnerId1=711713&PartnerId2=LP" },
+        { ubezpieczyciel: "Generali", opis: "NNW dla Twojego Dziecka", link: "https://moje.generali.pl/frontend/www/nnw-dziecka/105171" },
+        { ubezpieczyciel: "Generali", opis: "NNW dla Studentów", link: "https://moje.generali.pl/frontend/www/nnw-dziecka/105171" },
+        { ubezpieczyciel: "Inter Risk", opis: "NNW dla Twoich Dzieci R", link: "https://klient.interrisk.pl/EduPlusOfertaIndywidualna?agent=VjNRUzhK", kod: "kod: v3qs8j" },
+        { ubezpieczyciel: "Inter Risk", opis: "NNW dla Twojego Dziecka D", link: "https://klient.interrisk.pl/EduPlusOfertaIndywidualna?agent=WFVTNVZC", kod: "kod: xus5vb" },
+        { ubezpieczyciel: "Warta", opis: "NNW dla Dzieci małych i dużych", link: "https://www.warta.pl/kalkulator/ubezpieczenie-szkolne-nnw/wybor-placowki?p=ZNIZKAEKSTRAWWW5" },
+        { ubezpieczyciel: "Wiener", opis: "NNW szkolne", link: "https://sprzedaz.wiener.pl/ubezpieczone-dziecko/r/tel-EDU12345" },
+        { ubezpieczyciel: "Wiener", opis: "NNW przedszkolne i szkolne + FOTELIK PLUS", link: "https://sprzedaz.wiener.pl/dzieckozfotelikiem/r/tel-FOTELIK" },
+        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
     {
-      kategoria: "Twój samochód",
-      ikona: "samochod",
+      kategoria: "dla Twojego Domu", ikona: "dom",
       oferty: [
-        { ubezpieczyciel: "Generali", opis: "OC/AC (samochód, motor, przyczepa)", link: "https://moje.generali.pl/frontend/www/pojazd/105171" },
-        { ubezpieczyciel: "Proama", opis: "OC/AC dla Twojego pojazdu", link: "https://www.proama.pl/ubezpieczenie-samochodu-kalkulator-oc-ac/lead?CD_AGENT=105171" },
+        { ubezpieczyciel: "Generali", opis: "Twój Dom", link: "https://moje.generali.pl/frontend/www/dom/105171" },
+        { ubezpieczyciel: "Generali", opis: "Twój Dom w budowie", link: "https://moje.generali.pl/frontend/www/dom/105171" },
+        { ubezpieczyciel: "Generali", opis: "Twój Dom: cesja dla Banku", link: "https://moje.generali.pl/frontend/www/dom/105171" },
+        { ubezpieczyciel: "Proama", opis: "mój Dom", link: "https://saleswww.proama.pl/frontend/www/dom/105171" },
+        { ubezpieczyciel: "Wiener", opis: "Twoje Cztery Kąty", link: "https://sprzedaz.wiener.pl/4k/r/tel-4K1234" },
+        { ubezpieczyciel: "Kontakt", opis: "Mamy więcej ofert, zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+      ],
+    },
+    {
+      kategoria: "dla Twojego mieszkania", ikona: "dom",
+      oferty: [
+        { ubezpieczyciel: "Generali", opis: "Twoje Mieszkanie", link: "https://moje.generali.pl/frontend/www/dom/105171" },
+        { ubezpieczyciel: "Proama", opis: "moje Mieszkanie", link: "https://saleswww.proama.pl/frontend/www/dom/105171" },
+        { ubezpieczyciel: "Generali", opis: "Twoje Mieszkanie: cesja dla Banku", link: "https://moje.generali.pl/frontend/www/dom/105171" },
+        { ubezpieczyciel: "Proama", opis: "moje Mieszkanie: cesja dla Banku", link: "https://saleswww.proama.pl/frontend/www/dom/105171" },
+        { ubezpieczyciel: "Wiener", opis: "Twoje Cztery Kąty", link: "https://sprzedaz.wiener.pl/4k/r/tel-4K1234" },
+        { ubezpieczyciel: "Kontakt", opis: "Mamy więcej ofert, zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+      ],
+    },
+    {
+      kategoria: "dla Twojego Auta", ikona: "samochod",
+      oferty: [
+        { ubezpieczyciel: "Generali", opis: "Twoje Auto", link: "https://moje.generali.pl/frontend/www/pojazd/105171" },
+        { ubezpieczyciel: "Generali", opis: "Twoje Auto w leasingu", link: "https://moje.generali.pl/frontend/www/pojazd/105171" },
+        { ubezpieczyciel: "Generali", opis: "Twoje Auto w kredycie", link: "https://moje.generali.pl/frontend/www/pojazd/105171" },
+        { ubezpieczyciel: "Proama", opis: "Moje Auto", link: "https://saleswww.proama.pl/frontend/www/pojazd/105171" },
+        { ubezpieczyciel: "Kontakt", opis: "Moje Auto Elektryczne - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+      ],
+    },
+    {
+      kategoria: "Przyczepa, skuter, motocykl", ikona: "samochod",
+      oferty: [
+        { ubezpieczyciel: "Generali", opis: "", link: "https://moje.generali.pl/frontend/www/pojazd/105171" },
+        { ubezpieczyciel: "Proama", opis: "", link: "https://saleswww.proama.pl/frontend/www/pojazd/105171" },
+        { ubezpieczyciel: "Kontakt", opis: "Mamy więcej ofert, zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+      ],
+    },
+    {
+      kategoria: "Ciągnik rolniczy, przyczepa rolnicza", ikona: "ciagnik",
+      oferty: [
+        { ubezpieczyciel: "Generali", opis: "", link: "https://moje.generali.pl/frontend/www/pojazd/105171" },
+        { ubezpieczyciel: "Proama", opis: "", link: "https://saleswww.proama.pl/frontend/www/pojazd/105171" },
+        { ubezpieczyciel: "Kontakt", opis: "Mamy więcej ofert, zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+      ],
+    },
+    {
+      kategoria: "Asysta Prawna", ikona: "asysta_prawna",
+      oferty: [
+        { ubezpieczyciel: "Wiener", opis: "Asysta Prawna", link: "https://sprzedaz.wiener.pl/ochronaiasysta/r/tel-opa1234567890" },
+        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+      ],
+    },
+    {
+      kategoria: "dla Drona", ikona: "dron",
+      oferty: [ { ubezpieczyciel: "DRONY", opis: "", link: "https://sprzedaz.wiener.pl/ocpilota/r/tel-DRON123456789" } ],
+    },
+    {
+      kategoria: "Fotowoltaika", ikona: "fotowoltaika",
+      oferty: [
+        { ubezpieczyciel: "Generali", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "PZU", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Wiener", opis: "Fotowoltaika", link: "https://sprzedaz.wiener.pl/ubezpieczenieoze/r/tel-fotowoltaika123" },
+      ],
+    },
+    {
+      kategoria: "NNW dla Ciebie", ikona: "nnw",
+      oferty: [
+        { ubezpieczyciel: "Generali", opis: "NNW dla Ciebie (osoby dorosłe)", link: "https://moje.generali.pl/frontend/www/nnw-indywidualne/105171" },
+        { ubezpieczyciel: "PZU", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Warta", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Uniqa", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Kontakt", opis: "Mamy więcej ofert, zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+      ],
+    },
+    {
+      kategoria: "dla Twojego jachtu", ikona: "jacht",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
+    },
+    {
+      kategoria: "Pomoc na drodze dla Twojego Auta i ... Rowera", ikona: "assistance",
+      oferty: [
         { ubezpieczyciel: "Generali", opis: "Pomoc na drodze i holowanie", link: "https://form.moje.generali.pl/assistance/105171" },
-        { ubezpieczyciel: "UNIQA", opis: "Assistance, holowanie, auto zastępcze", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-assistance/start?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
-        { ubezpieczyciel: "Kontakt", opis: "Najlepsze OC/AC na rynku", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
     {
-      kategoria: "Dziecko i nauka",
-      ikona: "dziecko",
+      kategoria: "z myślą o wynajmie", ikona: "wynajem",
       oferty: [
-        { ubezpieczyciel: "PZU", opis: "NNW dla Dziecka", link: "https://ubestrefa.pl/", kod: "użyj kodu: lq8mfw" },
-        { ubezpieczyciel: "Inter Risk", opis: "NNW Szkolne", link: "https://nnwszkolne.interrisk.pl/start?guw=v3qs8j&id_source=21131111" },
-        { ubezpieczyciel: "UNIQA", opis: "NNW dla dziecka i studenta", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-nnw-szkolne/start?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
-      ],
-    },
-    {
-      kategoria: "dla Rowerzysty",
-      ikona: "rower",
-      oferty: [
-        { ubezpieczyciel: "Generali", opis: "OC, NNW, Casco dla rowerzysty", link: "https://form.moje.generali.pl/ubezpieczenie-rowerowe/kalkulator/105171" },
+        { ubezpieczyciel: "Generali", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
   ],
-
-  // === ZAKŁADKA: DLA FIRMY ===
   dlaFirmy: [
-     {
-      kategoria: "Majątek i OC firmy",
-      ikona: "firma",
+    {
+      kategoria: "flota samochodowa od 5 aut", ikona: "samochod",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
+    },
+    {
+      kategoria: "Twój wyjazd służbowy", ikona: "podroz",
       oferty: [
-        { ubezpieczyciel: "Warta", opis: "Ubezpieczenie mienia i OC firmy", link: "https://www.warta.pl/ubezpieczenia-dla-firm/warta-ekstrabiznes-plus/lead?p=ZNIZKAEKSTRAWWW1" },
-        { ubezpieczyciel: "Kontakt", opis: "Dobierzemy ofertę dla Twojej branży", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Wiener", opis: "Business Travel", link: "https://sprzedaz.wiener.pl/podrozebiznesowe/r/tel-BT12" },
+        { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
     {
-      kategoria: "flota samochodowa",
-      ikona: "samochod",
+      kategoria: "NNW dla Twoich Pracowników", ikona: "nnw",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
+    },
+    {
+      kategoria: "majątek Twojej firmy", ikona: "firma",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
+    },
+    {
+      kategoria: "dla Strażaków", ikona: "strazak",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
+    },
+    {
+      kategoria: "dla Firmy i jej pracowników: Odpowiedzialność Cywilna", ikona: "oc_zawodowe",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
+    },
+    {
+      kategoria: "dla branży IT", ikona: "it",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
+    },
+    {
+      kategoria: "Pomoc na drodze dla Twojego Auta", ikona: "assistance",
       oferty: [
-        { ubezpieczyciel: "Kontakt", opis: "Najlepsza oferta na rynku", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Generali", opis: "Pomoc na drodze i holowanie", link: "https://form.moje.generali.pl/assistance/105171" },
+        { ubezpieczyciel: "Kontakt", opis: "PZU, WARTA, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
     {
-      kategoria: "Gwarancje",
-      ikona: "gwarancje",
-      oferty: [
-        { ubezpieczyciel: "Warta", opis: "Gwarancje wadialne, kontraktowe i inne", link: "https://www.warta.pl/ubezpieczenia-dla-firm/gwarancje-ubezpieczeniowe/lead?p=ZNIZKAEKSTRAWWW1" },
-        { ubezpieczyciel: "Kontakt", opis: "Szybkie i pewne gwarancje", link: "/formularz-kontaktowy", typ: "formularz" },
-      ],
-    },
-    {
-      kategoria: "OC Zawodowe",
-      ikona: "oc_zawodowe",
-      oferty: [
-        { ubezpieczyciel: "Warta", opis: "OC dla Twojego zawodu", link: "https://www.warta.pl/ubezpieczenia-dla-firm/oc-zawodowe/lead?p=ZNIZKAEKSTRAWWW1" },
-         { ubezpieczyciel: "Inter Risk", opis: "OC dla różnych grup zawodowych", link: "https://s2.interrisk.pl/interrisk-www/pages/e-risk/index.xhtml#/", kod: "agent: 21131111" },
-        { ubezpieczyciel: "Kontakt", opis: "Znajdziemy OC dla Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
-      ],
-    },
-    {
-      kategoria: "Podróże służbowe",
-      ikona: "podroz",
-      oferty: [
-        { ubezpieczyciel: "Wiener", opis: "Bezpieczne delegacje pracowników", link: "https://sprzedaz.wiener.pl/podrozebiznesowe/r/tel-BT12" },
-      ],
-    },
-     {
-      kategoria: "dla operatorów dronów",
-      ikona: "dron",
-      oferty: [
-        { ubezpieczyciel: "Wiener", opis: "Obowiązkowe OC dla operatora", link: "https://sprzedaz.wiener.pl/ocpilota/r/tel-DRON123456789" },
-      ],
+      kategoria: "OC zawodowe", ikona: "oc_zawodowe",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
     },
   ],
-
-  // === ZAKŁADKA: DLA CIEBIE NA ŻYCIE ===
+  // === ZAKŁADKA: "dla Ciebie na życie" - 5 PUNKTÓW ===
   dlaCiebieNaZycie: [
     {
-      kategoria: "Lekarze bez granic, Best Doctors",
-      ikona: "zycie",
+      kategoria: "Lekarze bez granic, Best Doctors", ikona: "lekarz",
       oferty: [
         { ubezpieczyciel: "Wiener", opis: "MEDIPASS RET", link: "https://sprzedaz.wiener.pl/medipass/r/tel-MEDI123" },
-        { ubezpieczyciel: "UNIQA", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
-        { ubezpieczyciel: "Generali", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
-        { ubezpieczyciel: "Hestia", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Uniqa", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Generali", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Hestia", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
     {
-      kategoria: "Pakiet na życie dla Ciebie",
-      ikona: "zycie",
+      kategoria: "Pakiet na życie dla Ciebie", ikona: "zycie",
       oferty: [
-        { ubezpieczyciel: "Generali", opis: "Sprawdź ofertę", link: "https://portal.generali.pl/ewniosek/eshop/egpr/apk" },
-        { ubezpieczyciel: "UNIQA", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
-        { ubezpieczyciel: "PZU", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
-        { ubezpieczyciel: "Hestia", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Generali", opis: "", link: "https://portal.generali.pl/ewniosek/eshop/egpr/apk" },
+        { ubezpieczyciel: "Uniqa", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "PZU", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Hestia", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
     },
-     {
-      kategoria: "na życie pod kredyt",
-      ikona: "zycie",
+    {
+      kategoria: "na życie pod kredyt", ikona: "kredyt",
       oferty: [
         { ubezpieczyciel: "Generali", opis: "Zabezpieczenie kredytu", link: "https://portal.generali.pl/ewniosek/eshop/egpr/apk" },
-        { ubezpieczyciel: "UNIQA", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
-        { ubezpieczyciel: "PZU", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
-        { ubezpieczyciel: "Hestia", opis: "Poproś o ofertę", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Uniqa", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "PZU", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Hestia", opis: "otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
       ],
+    },
+    {
+      kategoria: "na życie dla Pracowników", ikona: "pracownicy",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "PZU, Hestia, Uniqa, Generali, otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
+    },
+    {
+      kategoria: "na zdrowie dla Ciebie i Pracowników", ikona: "zdrowie",
+      oferty: [ { ubezpieczyciel: "Kontakt", opis: "PZU, Generali, Hestia, Uniqa - otwiera się formularz do wypełnienia i wysłania", link: "/formularz-kontaktowy", typ: "formularz" } ],
     },
   ],
 };
@@ -159,25 +226,35 @@ const ikony = {
   podroz: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75.75v12m0 0 2.25-2.25M12.75 12.75 10.5 10.5M.75 12.75h11.25m6-3.375c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125-1.125H3.375c-.621 0-1.125-.504-1.125-1.125v-1.5c0-.621.504-1.125 1.125-1.125h14.25ZM12 6.375v2.25" /></svg>`,
   zycie: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>`,
   dziecko: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>`,
-  rower: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" /></svg>`,
   rezygnacja: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
+  dron: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" /></svg>`,
+  formularz: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5h7.5m-7.5 3h7.5m-7.5 3h7.5m3-9h.375c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-12.75c-.621 0-1.125-.504-1.125-1.125V5.625c0-.621.504-1.125 1.125-1.125H6.375m3.375 0-3-3m0 0h3.75" /></svg>`,
+  telefon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 6.75Z" /></svg>`,
+  ciagnik: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>`,
+  asysta_prawna: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>`,
+  fotowoltaika: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>`,
+  nnw: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>`,
+  jacht: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 18.75v-1.5a1.5 1.5 0 0 1 1.5-1.5h13.5a1.5 1.5 0 0 1 1.5 1.5v1.5m-16.5 0-1.5 3.75m19.5 0-1.5-3.75m-16.5 0h16.5" /></svg>`,
+  assistance: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" /></svg>`,
+  wynajem: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
+  strazak: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6A2.25 2.25 0 0 0 5.25 5.25v3.75m10.5 0v3.75m-10.5-3.75v3.75m10.5 0v3.75C15.75 16.903 13.84 18 11.25 18s-4.5-1.097-4.5-2.25V9m9 0h-9" /></svg>`,
+  it: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>`,
   firma: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6h1.5m-1.5 3h1.5m-1.5 3h1.5M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>`,
   oc_zawodowe: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>`,
-  gwarancje: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
-  dron: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" /></svg>`,
+  lekarz: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-6h6" /></svg>`,
+  kredyt: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-6h6" /></svg>`,
+  pracownicy: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-6h6" /></svg>`,
+  zdrowie: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-6h6" /></svg>`,
 };
 ---
-
 <section class="products">
   <div class="container">
     <h2>Wybierz ubezpieczenie, którego potrzebujesz</h2>
-    
     <div class="tabs">
       <button class="tab-button active" data-tab="dlaCiebie">Dla Ciebie</button>
       <button class="tab-button" data-tab="dlaFirmy">Dla Firmy</button>
       <button class="tab-button" data-tab="dlaCiebieNaZycie">dla Ciebie na życie</button>
     </div>
-
     <div id="dlaCiebie" class="tab-content active">
       <div class="category-grid">
         {daneProduktow.dlaCiebie.map((kategoria, index) => (
@@ -210,18 +287,15 @@ const ikony = {
     </div>
   </div>
 </section>
-
 <div id="product-modal" class="modal-overlay">
   <div class="modal-content">
     <button id="modal-close" class="modal-close-button">&times;</button>
     <h2 id="modal-title">Wybierz ofertę</h2>
-    <div id="modal-offers" class="offers-grid">
-      </div>
+    <div id="modal-offers" class="offers-container">
+    </div>
   </div>
 </div>
-
-<script define:vars={{ daneProduktow }}>
-  // === LOGIKA DLA ZAKŁADEK I MODALA ===
+<script define:vars={{ daneProduktow, ikony }}>
   document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -230,8 +304,6 @@ const ikony = {
     const modalTitle = document.getElementById('modal-title');
     const modalOffers = document.getElementById('modal-offers');
     const modalClose = document.getElementById('modal-close');
-
-    // Przełączanie głównych zakładek
     tabButtons.forEach(button => {
       button.addEventListener('click', () => {
         tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -240,8 +312,6 @@ const ikony = {
         document.getElementById(button.dataset.tab).classList.add('active');
       });
     });
-
-    // Otwieranie modala po kliknięciu karty kategorii
     categoryCards.forEach(card => {
       card.addEventListener('click', () => {
         const tab = card.dataset.tab;
@@ -249,25 +319,39 @@ const ikony = {
         const kategoria = daneProduktow[tab][index];
         
         modalTitle.textContent = kategoria.kategoria;
-        modalOffers.innerHTML = ''; // Czyszczenie poprzednich ofert
-
+        modalOffers.innerHTML = ''; 
         kategoria.oferty.forEach(oferta => {
           const offerTile = document.createElement('a');
           offerTile.href = oferta.link;
           offerTile.className = 'offer-tile';
+          
+          let iconHTML = '';
+          if (oferta.typ === 'formularz') {
+              iconHTML = ikony['formularz'];
+          } else {
+              const hostname = new URL(oferta.link).hostname;
+              iconHTML = `<img src="https://logo.clearbit.com/${hostname}" alt="${oferta.ubezpieczyciel} logo" onerror="this.parentElement.style.display='none'"/>`;
+          }
+          
           if (oferta.typ !== 'formularz') {
             offerTile.target = '_blank';
             offerTile.rel = 'noopener noreferrer';
+          } else {
+            offerTile.classList.add('is-contact');
+            iconHTML = ikony['telefon'];
           }
-
           let kodInfo = '';
           if (oferta.kod) {
             kodInfo = `<p class="promo-code">${oferta.kod}</p>`;
           }
           
           offerTile.innerHTML = `
-            <strong>${oferta.ubezpieczyciel}</strong>
-            <p>${oferta.opis}</p>
+            <div class="offer-tile-icon">${iconHTML}</div>
+            <div class="offer-tile-info">
+              <strong>${oferta.ubezpieczyciel}</strong>
+              <p>${oferta.opis}</p>
+            </div>
+            <div class="offer-tile-arrow">→</div>
             ${kodInfo}
           `;
           modalOffers.appendChild(offerTile);
@@ -276,8 +360,6 @@ const ikony = {
         modal.classList.add('active');
       });
     });
-
-    // Zamykanie modala
     const closeModal = () => modal.classList.remove('active');
     modalClose.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
@@ -287,9 +369,14 @@ const ikony = {
     });
   });
 </script>
-
 <style>
-/* === GŁÓWNY KONTENER SEKCJI === */
+:root {
+  --kolor-glowny-ciemny: #0D2C4F;
+  --kolor-akcentu: #FFC107;
+  --kolor-tla-jasny: #F8F9FA;
+  --kolor-tekstu-ciemny: #343A40;
+  --kolor-bialy: #FFFFFF;
+}
 .products {
   padding: 80px 20px;
   background-color: var(--kolor-tla-jasny);
@@ -299,10 +386,7 @@ const ikony = {
   margin: 0 auto;
   text-align: center;
 }
-.products h2 {
-  margin-bottom: 3rem;
-}
-/* === STYLE ZAKŁADEK === */
+.products h2 { margin-bottom: 3rem; }
 .tabs {
   display: flex;
   justify-content: center;
@@ -320,9 +404,7 @@ const ikony = {
   position: relative;
   transition: color 0.3s ease;
 }
-.tab-button:hover {
-  color: var(--kolor-glowny-ciemny);
-}
+.tab-button:hover { color: var(--kolor-glowny-ciemny); }
 .tab-button.active {
   color: var(--kolor-glowny-ciemny);
   font-weight: bold;
@@ -336,14 +418,8 @@ const ikony = {
   height: 3px;
   background-color: var(--kolor-akcentu);
 }
-.tab-content {
-  display: none;
-}
-.tab-content.active {
-  display: block;
-}
-
-/* === KARTY KATEGORII === */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -387,15 +463,14 @@ const ikony = {
   font-size: 1.2rem;
   color: var(--kolor-glowny-ciemny);
 }
-
-/* === MODAL (WYSKAKUJĄCE OKNO) === */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(13, 44, 79, 0.8);
+  backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -409,76 +484,131 @@ const ikony = {
   visibility: visible;
 }
 .modal-content {
-  background: var(--kolor-bialy);
+  background: var(--kolor-tla-jasny);
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 90%;
-  max-width: 800px;
+  max-width: 700px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  transform: scale(0.9);
+  transform: translateY(20px);
   transition: transform 0.3s ease;
 }
 .modal-overlay.active .modal-content {
-  transform: scale(1);
+  transform: translateY(0);
 }
 .modal-close-button {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: none;
+  background: #e9ecef;
   border: none;
-  font-size: 2rem;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
   cursor: pointer;
-  color: #aaa;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
 }
 .modal-close-button:hover {
+  background-color: #ced4da;
   color: #333;
 }
 #modal-title {
   text-align: center;
   margin-top: 0;
   margin-bottom: 2rem;
+  font-size: 2rem;
 }
-
-/* === KAFELKI Z OFERTAMI W MODALU === */
-.offers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+.offers-container {
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 .offer-tile {
-  display: block;
-  padding: 1.5rem;
-  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--kolor-bialy);
   border-radius: 8px;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 .offer-tile:hover {
-  border-color: var(--kolor-akcentu);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.offer-tile-icon {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  color: var(--kolor-glowny-ciemny);
+}
+.offer-tile-icon img {
+  width: 30px;
+  height: 30px;
+}
+.offer-tile-icon svg {
+  width: 24px;
+  height: 24px;
+}
+.offer-tile-info {
+  flex-grow: 1;
+  text-align: left;
 }
 .offer-tile strong {
   display: block;
   font-size: 1.2rem;
   color: var(--kolor-glowny-ciemny);
-  margin-bottom: 0.5rem;
 }
 .offer-tile p {
   margin: 0;
   font-size: 0.9rem;
   color: #6c757d;
 }
+.offer-tile-arrow {
+  font-size: 1.5rem;
+  color: #ccc;
+  transition: color 0.2s;
+}
+.offer-tile:hover .offer-tile-arrow {
+  color: var(--kolor-akcentu);
+}
 .promo-code {
-  margin-top: 0.75rem !important;
-  font-size: 0.8rem !important;
+  position: absolute;
+  bottom: -10px;
+  right: 15px;
+  font-size: 0.75rem !important;
   color: var(--kolor-tekstu-ciemny) !important;
   background-color: #e9ecef;
-  padding: 5px;
+  padding: 3px 8px;
   border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.offer-tile.is-contact {
+  background-color: var(--kolor-glowny-ciemny);
+}
+.offer-tile.is-contact strong,
+.offer-tile.is-contact p {
+  color: var(--kolor-bialy);
+}
+.offer-tile.is-contact .offer-tile-icon {
+  background-color: var(--kolor-akcentu);
+  border: none;
 }
 </style>
