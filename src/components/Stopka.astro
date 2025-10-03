@@ -1,17 +1,73 @@
 ---
-const dzisiejszyRok = new Date().getFullYear();
+// src/components/Stopka.astro
+
+// Dane wczytane z pliku biura dane kontaktowe.txt
+const offices = [
+  {
+    city: "Ożarów Mazowiecki",
+    address: "ul. Poznańska 280/14A, 05-850",
+    mapLink: "https://maps.app.goo.gl/jEYwfZn6nRYEsgJt5",
+    contacts: [
+      "Diana Sugier: 533 488 848",
+      "Remigiusz Szulc: 534 488 848"
+    ]
+  },
+  {
+    city: "Warszawa, Białołęka",
+    address: "ul. Białołęcka 222, 03-253",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Białołęcka+222,+03-253+Warszawa",
+    contacts: [
+      "Piotr Zasim: 794 004 604"
+    ]
+  },
+  {
+    city: "Warszawa, Targówek",
+    address: "ul. Ostródzka 190, 03-289",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Ostródzka+190,+03-289+Warszawa",
+    contacts: [
+      "Piotr Fruczek: 501 384 922"
+    ]
+  },
+  {
+    city: "Warszawa, Wesoła (Biuro On-Line)",
+    address: "ul. Jana Pawła II 37, 05-077",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=ul.+Jana+Pawła+II+37,+05-077+Warszawa+Wesoła",
+    contacts: [
+      "Darek Wrześniak: 602 612 682"
+    ]
+  }
+];
+
+const socialLinks = {
+  facebook: "https://facebook.com/galeria.ubezpieczeniowa",
+  googleBusiness: "https://share.google/utKTyVQAA0JBoXpXG"
+};
+
+const companyName = "Galeria Ubezpieczeniowa";
 ---
 
-<footer>
-  <p>&copy; {dzisiejszyRok} Galeria Ubezpieczeniowa. Wszelkie prawa zastrzeżone.</p>
-</footer>
-
-<style>
-  footer {
-    background-color: #333;
-    color: white;
-    padding: 1.5rem;
-    text-align: center;
-    margin-top: 2rem;
-  }
-</style>
+<footer class="footer-container">
+  <div class="footer-content">
+    <div class="offices-section">
+      <h3>Nasze Biura</h3>
+      <div class="offices-grid">
+        {offices.map(office => (
+          <div class="office">
+            <strong>{office.city}</strong>
+            <p class="address">{office.address}</p>
+            <div class="contacts">
+              {office.contacts.map(contact => <p class="contact-person">{contact}</p>)}
+            </div>
+            <a href={office.mapLink} target="_blank" rel="noopener noreferrer">Zobacz na mapie</a>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="social-section">
+      <h3>Znajdź nas</h3>
+      <div class="social-links">
+        <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg>
+        </a>
+        <a href={socialLinks.googleBusiness} target="_blank" rel="noopener noreferrer" aria-label="Google Moja Firma">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.19,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,
