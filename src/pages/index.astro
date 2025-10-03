@@ -9,16 +9,17 @@ import Opinie from '../components/Opinie.astro';
 import CTA from '../components/CTA.astro';
 import Stopka from '../components/Stopka.astro';
 import FAQSection from '../components/FAQSection.astro'; 
+// POPRAWKA: Przywracamy CzatbotPlaceholder i dodajemy ChatWidget
 import CzatbotPlaceholder from '../components/CzatbotPlaceholder.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 
 // Importujemy logikę Gemini
 import generateFAQContent from '../ai/gemini-logic.js';
-
 // === LOGIKA GENERACJI STRONY ===
 const topic = "Ogólne ubezpieczenia dla firm i osób prywatnych - WZORZEC AKTYWNY";
 const faqResult = await generateFAQContent(topic);
-const faqData = faqResult?.faqData || []; // Zabezpieczenie przed null
-const schemaJSON = faqResult?.schemaJSON || ''; // Zabezpieczenie przed null
+const faqData = faqResult?.faqData || []; 
+const schemaJSON = faqResult?.schemaJSON || '';
 // ===============================
 ---
 
@@ -38,11 +39,12 @@ const schemaJSON = faqResult?.schemaJSON || ''; // Zabezpieczenie przed null
       <KluczoweProdukty />
       <Opinie />
       <FAQSection data={faqData} />
-      <CTA />
+     <CTA />
     </main>
     
     <Stopka />
 
-    <CzatbotPlaceholder /> 
+    <CzatbotPlaceholder />
+    <ChatWidget />
 
 </Layout>
