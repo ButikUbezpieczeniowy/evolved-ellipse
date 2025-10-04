@@ -1,40 +1,63 @@
 ---
-// === OSTATECZNA KONFIGURACJA PRODUKTÓW - WERSJA 1:1 ZGODNA Z POLECENIEM ===
-const daneProduktow = {
+// KROK 1: Definiujemy "szablony" dla naszych danych (TypeScript)
+interface Oferta {
+  ubezpieczyciel: string;
+  opis: string;
+  link: string;
+  typ?: "formularz";
+  kod?: string;
+}
+
+interface Kategoria {
+  kategoria: string;
+  ikona: string;
+  oferty: Oferta[]; // <-- Mówimy jasno, że "oferty" to TABLICA obiektów Oferta
+}
+
+// KROK 2: Używamy szablonów do zdefiniowania struktury głównego obiektu
+type DaneProduktow = {
+  dlaCiebie: Kategoria[];
+  dlaFirmy: Kategoria[];
+  dlaCiebieNaZycie: Kategoria[];
+};
+
+const daneProduktow: DaneProduktow = {
   dlaCiebie: [
     {
-      kategoria: "Podróże", ikona: "podroz",
+      kategoria: "Podróże",
+      ikona: "podroz",
       oferty: [
-        { ubezpieczyciel: "Generali", opis: "Podróże i polskie i zagraniczne", link: "https://form.moje.generali.pl/ubezpieczenia-podrozne/zagraniczne/105171" },
-        { ubezpieczyciel: "Uniqa", opis: "Koszty leczenia w kraju i za granicą", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-podrozne/destinations?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
-        { ubezpieczyciel: "WARTA", opis: "Podróże i Polskie i Zagraniczne", link: "https://www.warta.pl/kalkulator/ubezpieczenie-turystyczne/twoja-podroz?p=ZNIZKAEKSTRAWWW1" },
-        { ubezpieczyciel: "Wiener", opis: "dla Turysty", link: "https://sprzedaz.wiener.pl/turystyczne/r/tel-TOUR123" },
-        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Generali", opis: "Podróże i polskie i zagraniczne", link: "https://form.moje.generali.pl/ubezpieczenia-p" },
+        { ubezpieczyciel: "WARTA", opis: "podróze i polskie i zagraniczne", link: "https://www.warta.pl/kalkulator/ubezpieczenie-tu" },
+        { ubezpieczyciel: "Wiener", opis: "dla Turysty", link: "https://sprzedaz.wiener.pl/turystyczne/p/tel-TOURIST2" },
+        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz", typ: "formularz" },
       ],
     },
     {
-      kategoria: "Koszty rezygnacji z podróży", ikona: "rezygnacja",
+      kategoria: "Koszty rezygnacji z podróży",
+      ikona: "rezygnacja",
       oferty: [
-        { ubezpieczyciel: "Uniqa", opis: "Koszty rezygnacji z podróży", link: "https://www.uniqa.pl/kalkulator/rezygnacjazpodrozy/variants?agent=MTk1NTk0ODA1OjE5NTU5NTI1OQ==" },
-        { ubezpieczyciel: "Generali", opis: "Koszty rezygnacji z podróży: i w Polska i za granicą", link: "https://form.moje.generali.pl/ubezpieczenia-podrozne/rezygnacja/105171" },
-        { ubezpieczyciel: "Warta", opis: "Koszty odwołania podróży", link: "https://www.warta.pl/kalkulator/ubezpieczenie-rezygnacji-z-podrozy/twoja-podroz?p=ZNIZKAEKSTRAWWW2" },
-        { ubezpieczyciel: "Wiener", opis: "Koszty odwołania podróży", link: "https://sprzedaz.wiener.pl/rezygnacjazimprezy/r/tel-rez123456789" },
-        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Uniqa", opis: "Koszty rezygnacji z podróży", link: "https://www.uniqa.pl/kalkulator/rezygnacjazpodrozy/v" },
+        { ubezpieczyciel: "Generali", opis: "Koszty rezygnacji z podróży i w polska i za granicą", link: "https://form.moje.generali.pl/ubezpieczenia-p" },
+        { ubezpieczyciel: "Warta", opis: "Koszty odwołania podróży", link: "https://www.warta.pl/kalkulator/ubezpieczenie-rezygnacji-z-imprezy-turystycznej" },
+        { ubezpieczyciel: "Wiener", opis: "Koszty odwołania podróży", link: "https://sprzedaz.wiener.pl/rezygnacja-z-imprezy/p/tel-rezygnacja" },
+        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz", typ: "formularz" },
       ],
     },
     {
-      kategoria: "dla Dziecka", ikona: "dziecko",
+      kategoria: "Dla Dziecka",
+      ikona: "dziecko",
       oferty: [
-        { ubezpieczyciel: "Uniqa", opis: "NNW dla Dzieci", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-szkolne-nnw/insurance?PartnerType=PA&PartnerId1=711713&PartnerId2=LP" },
-        { ubezpieczyciel: "Uniqa", opis: "NNW dla Studentów", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-szkolne-nnw/insurance?PartnerType=PA&PartnerId1=711713&PartnerId2=LP" },
-        { ubezpieczyciel: "Generali", opis: "NNW dla Twojego Dziecka", link: "https://moje.generali.pl/frontend/www/nnw-dziecka/105171" },
-        { ubezpieczyciel: "Generali", opis: "NNW dla Studentów", link: "https://moje.generali.pl/frontend/www/nnw-dziecka/105171" },
-        { ubezpieczyciel: "Inter Risk", opis: "NNW dla Twoich Dzieci R", link: "https://klient.interrisk.pl/EduPlusOfertaIndywidualna?agent=VjNRUzhK", kod: "kod: v3qs8j" },
-        { ubezpieczyciel: "Inter Risk", opis: "NNW dla Twojego Dziecka D", link: "https://klient.interrisk.pl/EduPlusOfertaIndywidualna?agent=WFVTNVZC", kod: "kod: xus5vb" },
-        { ubezpieczyciel: "Warta", opis: "NNW dla Dzieci małych i dużych", link: "https://www.warta.pl/kalkulator/ubezpieczenie-szkolne-nnw/wybor-placowki?p=ZNIZKAEKSTRAWWW5" },
-        { ubezpieczyciel: "Wiener", opis: "NNW szkolne", link: "https://sprzedaz.wiener.pl/ubezpieczone-dziecko/r/tel-EDU12345" },
-        { ubezpieczyciel: "Wiener", opis: "NNW przedszkolne i szkolne + FOTELIK PLUS", link: "https://sprzedaz.wiener.pl/dzieckozfotelikiem/r/tel-FOTELIK" },
-        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz-kontaktowy", typ: "formularz" },
+        { ubezpieczyciel: "Uniqa", opis: "NNW dla Dzieci", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-szkolne-nnw/insur" },
+        { ubezpieczyciel: "Uniqa", opis: "NNW dla Studentów", link: "https://www.uniqa.pl/kalkulator/ubezpieczenie-szkolne-nnw/insur" },
+        { ubezpieczyciel: "Generali", opis: "NNW dla Twojego Dziecka", link: "https://moje.generali.pl/frontend/nnw/nnw-dziecka/105" },
+        { ubezpieczyciel: "Generali", opis: "NNW dla Studentów", link: "https://moje.generali.pl/frontend/nnw/nnw-dziecka/105" },
+        { ubezpieczyciel: "Inter Risk", opis: "NNW dla Twoich Dzieci 0", link: "https://klient.interrisk.pl/EduPlusPortalIndywidualny/szkody/ubezpieczenie/warianty" },
+        { ubezpieczyciel: "Inter Risk", opis: "NNW dla Twoich i małych Dziecka", link: "https://klient.interrisk.pl/EduPlusPortalIndywidualny/szkody/ubezpieczenie/warianty" },
+        { ubezpieczyciel: "Warta", opis: "NNW dla Dziecka 0", link: "https://www.warta.pl/ubezpieczenie-dziecko/tel-EDU12345" },
+        { ubezpieczyciel: "Inter Risk", opis: "NNW szkolne", link: "https://www.warta.pl/ubezpieczenie-dziecko/tel-EDU12345" },
+        { ubezpieczyciel: "Wiener", opis: "NNW przedszkolne i szkolne z FOTELIK PLUS", link: "https://sprzedaz.wiener.pl/dziecko/p/tel-PRZEDSZKOLE1" },
+        { ubezpieczyciel: "Kontakt", opis: "Zadzwoń lub wypełnij formularz, bezpłatna wycena - oddzwonimy do Ciebie", link: "/formularz", typ: "formularz" },
       ],
     },
     {
@@ -233,7 +256,7 @@ const ikony = {
   nnw: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>`,
   jacht: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 18.75v-1.5a1.5 1.5 0 0 1 1.5-1.5h13.5a1.5 1.5 0 0 1 1.5 1.5v1.5m-16.5 0-1.5 3.75m19.5 0-1.5-3.75m-16.5 0h16.5" /></svg>`,
   assistance: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" /></svg>`,
-  wynajem: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
+  wynajem: `<svg xmlns="http://www.w.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>`,
   strazak: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6A2.25 2.25 0 0 0 5.25 5.25v3.75m10.5 0v3.75m-10.5-3.75v3.75m10.5 0v3.75C15.75 16.903 13.84 18 11.25 18s-4.5-1.097-4.5-2.25V9m9 0h-9" /></svg>`,
   it: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>`,
   firma: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6h1.5m-1.5 3h1.5m-1.5 3h1.5M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>`,
@@ -241,365 +264,6 @@ const ikony = {
   lekarz: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-6h6" /></svg>`,
   kredyt: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m3-3.75l-3 3m0 0l-3-3m3 3V15" /></svg>`,
   pracownicy: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m-7.5-2.952a4.5 4.5 0 0 1 4.5 0m-4.5 0a4.5 4.5 0 0 0-4.5 0m12 .53a9.094 9.094 0 0 0-3.742-.479m-4.5 0a9.094 9.094 0 0 0-3.742.479M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 4.5a4.5 4.5 0 0 0 .094-8.956 4.5 4.5 0 0 0-8.956 .094Z" /></svg>`,
-  zdrowie: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-6h6" /></svg>`,
+  zdrowie: `<svg xmlns="http://www.w.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-6h6" /></svg>`,
   link_zewnetrzny: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>`
 };
----
-<section class="products">
-  <div class="container">
-    <h2>Wybierz ubezpieczenie, którego potrzebujesz</h2>
-    <div class="tabs">
-      <button class="tab-button active" data-tab="dlaCiebie">Dla Ciebie</button>
-      <button class="tab-button" data-tab="dlaFirmy">Dla Firmy</button>
-      <button class="tab-button" data-tab="dlaCiebieNaZycie">dla Ciebie na życie</button>
-    </div>
-    <div id="dlaCiebie" class="tab-content active">
-      <div class="category-grid">
-        {daneProduktow.dlaCiebie.map((kategoria, index) => (
-          <div class="category-card" data-tab="dlaCiebie" data-index={index}>
-            <div class="card-icon" set:html={ikony[kategoria.ikona]} />
-            <h3>{kategoria.kategoria}</h3>
-          </div>
-        ))}
-      </div>
-    </div>
-    <div id="dlaFirmy" class="tab-content">
-       <div class="category-grid">
-        {daneProduktow.dlaFirmy.map((kategoria, index) => (
-          <div class="category-card" data-tab="dlaFirmy" data-index={index}>
-            <div class="card-icon" set:html={ikony[kategoria.ikona]} />
-            <h3>{kategoria.kategoria}</h3>
-          </div>
-        ))}
-      </div>
-    </div>
-    <div id="dlaCiebieNaZycie" class="tab-content">
-       <div class="category-grid">
-        {daneProduktow.dlaCiebieNaZycie.map((kategoria, index) => (
-          <div class="category-card" data-tab="dlaCiebieNaZycie" data-index={index}>
-            <div class="card-icon" set:html={ikony[kategoria.ikona]} />
-            <h3>{kategoria.kategoria}</h3>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-<div id="product-modal" class="modal-overlay">
-  <div class="modal-content">
-    <button id="modal-close" class="modal-close-button">&times;</button>
-    <h2 id="modal-title">Wybierz ofertę</h2>
-    <div id="modal-offers" class="offers-container">
-    </div>
-  </div>
-</div>
-<script define:vars={{ daneProduktow, ikony }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-    const categoryCards = document.querySelectorAll('.category-card');
-    const modal = document.getElementById('product-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalOffers = document.getElementById('modal-offers');
-    const modalClose = document.getElementById('modal-close');
-    tabButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-        button.classList.add('active');
-        document.getElementById(button.dataset.tab).classList.add('active');
-      });
-    });
-    categoryCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const tab = card.dataset.tab;
-        const index = parseInt(card.dataset.index, 10);
-        const kategoria = daneProduktow[tab][index];
-        
-        modalTitle.textContent = kategoria.kategoria;
-        modalOffers.innerHTML = ''; 
-        kategoria.oferty.forEach(oferta => {
-          const offerTile = document.createElement('a');
-          offerTile.href = oferta.link;
-          offerTile.className = 'offer-tile';
-          
-          let iconHTML = '';
-          if (oferta.typ === 'formularz') {
-              iconHTML = ikony['telefon'];
-              offerTile.classList.add('is-contact');
-          } else {
-              iconHTML = ikony['link_zewnetrzny'];
-          }
-          
-          if (oferta.typ !== 'formularz') {
-            offerTile.target = '_blank';
-            offerTile.rel = 'noopener noreferrer';
-          }
-
-          let kodInfo = '';
-          if (oferta.kod) {
-            kodInfo = `<p class="promo-code">${oferta.kod}</p>`;
-          }
-          
-          offerTile.innerHTML = `
-            <div class="offer-tile-icon">${iconHTML}</div>
-            <div class="offer-tile-info">
-              <strong>${oferta.ubezpieczyciel}</strong>
-              <p>${oferta.opis}</p>
-            </div>
-            <div class="offer-tile-arrow">→</div>
-            ${kodInfo}
-          `;
-          modalOffers.appendChild(offerTile);
-        });
-        
-        modal.classList.add('active');
-      });
-    });
-    const closeModal = () => modal.classList.remove('active');
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-  });
-</script>
-<style>
-:root {
-  --kolor-glowny-ciemny: #0D2C4F;
-  --kolor-akcentu: #FFC107;
-  --kolor-tla-jasny: #F8F9FA;
-  --kolor-tekstu-ciemny: #343A40;
-  --kolor-bialy: #FFFFFF;
-}
-.products {
-  padding: 80px 20px;
-  background-color: var(--kolor-tla-jasny);
-}
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-.products h2 { margin-bottom: 3rem; }
-.tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
-  border-bottom: 1px solid #ddd;
-}
-.tab-button {
-  padding: 1rem 1.5rem;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-family: 'Montserrat', sans-serif;
-  color: #888;
-  position: relative;
-  transition: color 0.3s ease;
-}
-.tab-button:hover { color: var(--kolor-glowny-ciemny); }
-.tab-button.active {
-  color: var(--kolor-glowny-ciemny);
-  font-weight: bold;
-}
-.tab-button.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background-color: var(--kolor-akcentu);
-}
-.tab-content { display: none; }
-.tab-content.active { display: block; }
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-.category-card {
-  background: var(--kolor-bialy);
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 200px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-}
-.category-card .card-icon {
-  width: 50px;
-  height: 50px;
-  color: var(--kolor-akcentu);
-  background-color: var(--kolor-glowny-ciemny);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-.category-card .card-icon svg {
-  width: 28px;
-  height: 28px;
-}
-.category-card h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: var(--kolor-glowny-ciemny);
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(13, 44, 79, 0.8);
-  backdrop-filter: blur(5px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 1000;
-}
-.modal-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-.modal-content {
-  background: var(--kolor-tla-jasny);
-  padding: 2rem;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 700px;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  transform: translateY(20px);
-  transition: transform 0.3s ease;
-}
-.modal-overlay.active .modal-content {
-  transform: translateY(0);
-}
-.modal-close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: #e9ecef;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #888;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s, color 0.2s;
-}
-.modal-close-button:hover {
-  background-color: #ced4da;
-  color: #333;
-}
-#modal-title {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-.offers-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.offer-tile {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1rem 1.5rem;
-  background: var(--kolor-bialy);
-  border-radius: 8px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
-}
-.offer-tile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-}
-.offer-tile-icon {
-  flex-shrink: 0;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--kolor-tla-jasny);
-  border-radius: 50%;
-  color: var(--kolor-glowny-ciemny);
-}
-.offer-tile-icon svg {
-  width: 24px;
-  height: 24px;
-}
-.offer-tile-info {
-  flex-grow: 1;
-  text-align: left;
-}
-.offer-tile strong {
-  display: block;
-  font-size: 1.2rem;
-  color: var(--kolor-glowny-ciemny);
-}
-.offer-tile p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #6c757d;
-}
-.offer-tile-arrow {
-  font-size: 1.5rem;
-  color: #ccc;
-  transition: color 0.2s;
-}
-.offer-tile:hover .offer-tile-arrow {
-  color: var(--kolor-akcentu);
-}
-.promo-code {
-  position: absolute;
-  bottom: -10px;
-  right: 15px;
-  font-size: 0.75rem !important;
-  color: var(--kolor-tekstu-ciemny) !important;
-  background-color: #e9ecef;
-  padding: 3px 8px;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-.offer-tile.is-contact {
-  background-color: var(--kolor-glowny-ciemny);
-}
-.offer-tile.is-contact strong,
-.offer-tile.is-contact p {
-  color: var(--kolor-bialy);
-}
-.offer-tile.is-contact .offer-tile-icon {
-  background-color: var(--kolor-akcentu);
-  border: none;
-}
-</style>
